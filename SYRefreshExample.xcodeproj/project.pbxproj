@@ -54,6 +54,9 @@
 		2A08C31A1EC404A90035DD5E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3041EC404A90035DD5E /* TestViewController.m */; };
 		2A08C31B1EC404A90035DD5E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3041EC404A90035DD5E /* TestViewController.m */; };
 		2A08C31C1EC404A90035DD5E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3041EC404A90035DD5E /* TestViewController.m */; };
+		2A08C3681EC941630035DD5E /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3671EC941630035DD5E /* TestCollectionViewController.m */; };
+		2A08C3691EC941630035DD5E /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3671EC941630035DD5E /* TestCollectionViewController.m */; };
+		2A08C36A1EC941630035DD5E /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3671EC941630035DD5E /* TestCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,8 @@
 		2A08C3021EC404A90035DD5E /* SYShopDetailManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYShopDetailManagerController.m; sourceTree = "<group>"; };
 		2A08C3031EC404A90035DD5E /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		2A08C3041EC404A90035DD5E /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		2A08C3661EC941630035DD5E /* TestCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
+		2A08C3671EC941630035DD5E /* TestCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +184,8 @@
 				2A08C3001EC404A90035DD5E /* SYGifViewController.m */,
 				2A08C3011EC404A90035DD5E /* SYShopDetailManagerController.h */,
 				2A08C3021EC404A90035DD5E /* SYShopDetailManagerController.m */,
+				2A08C3661EC941630035DD5E /* TestCollectionViewController.h */,
+				2A08C3671EC941630035DD5E /* TestCollectionViewController.m */,
 				2A08C3031EC404A90035DD5E /* TestViewController.h */,
 				2A08C3041EC404A90035DD5E /* TestViewController.m */,
 				2A08C2B01EC404750035DD5E /* ViewController.h */,
@@ -384,6 +391,7 @@
 				2A08C31A1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C3111EC404A90035DD5E /* SYGifTextHeaderViewController.m in Sources */,
 				2A08C2B21EC404750035DD5E /* ViewController.m in Sources */,
+				2A08C3681EC941630035DD5E /* TestCollectionViewController.m in Sources */,
 				2A08C3141EC404A90035DD5E /* SYGifViewController.m in Sources */,
 				2A08C2F41EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C2AF1EC404750035DD5E /* AppDelegate.m in Sources */,
@@ -404,6 +412,7 @@
 				2A08C2F21EC404880035DD5E /* SYRefreshView.m in Sources */,
 				2A08C3121EC404A90035DD5E /* SYGifTextHeaderViewController.m in Sources */,
 				2A08C3151EC404A90035DD5E /* SYGifViewController.m in Sources */,
+				2A08C3691EC941630035DD5E /* TestCollectionViewController.m in Sources */,
 				2A08C2F51EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C30C1EC404A90035DD5E /* FistViewController.m in Sources */,
 				2A08C30F1EC404A90035DD5E /* SecondViewController.m in Sources */,
@@ -422,6 +431,7 @@
 				2A08C2F31EC404880035DD5E /* SYRefreshView.m in Sources */,
 				2A08C3131EC404A90035DD5E /* SYGifTextHeaderViewController.m in Sources */,
 				2A08C3161EC404A90035DD5E /* SYGifViewController.m in Sources */,
+				2A08C36A1EC941630035DD5E /* TestCollectionViewController.m in Sources */,
 				2A08C2F61EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C30D1EC404A90035DD5E /* FistViewController.m in Sources */,
 				2A08C3101EC404A90035DD5E /* SecondViewController.m in Sources */,
@@ -652,6 +662,7 @@
 				2A08C2D61EC404750035DD5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A08C2D71EC404750035DD5E /* Build configuration list for PBXNativeTarget "SYRefreshExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -660,6 +671,7 @@
 				2A08C2D91EC404750035DD5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A08C2DA1EC404750035DD5E /* Build configuration list for PBXNativeTarget "SYRefreshExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -668,6 +680,7 @@
 				2A08C2DC1EC404750035DD5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

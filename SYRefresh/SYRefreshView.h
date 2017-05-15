@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-/**拖拽控件的状态 */
+/**刷新控件的状态 */
 typedef NS_ENUM(NSInteger, SYRefreshViewState) {
     /** 普通闲置状态 */
     SYRefreshViewStateIdle = 1,
@@ -17,6 +17,19 @@ typedef NS_ENUM(NSInteger, SYRefreshViewState) {
     /** 正在刷新的状态 */
     SYRefreshViewRefreshing
 };
+
+/**刷新控件的方向 可以为指定的方向添加刷新控件*/
+typedef NS_ENUM(NSInteger, SYRefreshViewOrientation) {
+    /** 顶部 */
+    SYRefreshViewOrientationTop = 1,
+    /** 底部 */
+    SYRefreshViewOrientationBottom,
+    /** 左边 */
+    SYRefreshViewOrientationLeft,
+    /** 右边 */
+    SYRefreshViewOrientationRight
+};
+
 /** 松开切换的回调*/
 typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 
@@ -36,6 +49,15 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 *  @param completionBlock 开始刷新之后的回调
 */
 + (SYRefreshView*)refreshWithHeight:(CGFloat)height isFooter:(BOOL)isFooter completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
+
+/**
+ *  创建刷新控件
+ *  @param orientation 为指定的方向添加刷新控件
+ *  @param width       刷新控件宽度
+ *  @param completionBlock 开始刷新之后的回调
+ */
++ (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation width:(CGFloat)width completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
+
 /**
  *  置控件不同的状态对应的提示文字
  *  @param state  刷新控件状态 对应 SYRefreshViewState
@@ -54,6 +76,8 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 @property(nonatomic ,assign) CGFloat arrowRightInset;
 /***设置控件的高度*/
 @property(nonatomic ,assign) CGFloat sy_height;
+/***设置控件的宽度*/
+@property(nonatomic ,assign) CGFloat sy_width;
 /***是否隐藏箭头*/
 @property(nonatomic ,assign,getter=isHiddenArrow) BOOL hiddenArrow;
 /***是否隐藏菊花*/
