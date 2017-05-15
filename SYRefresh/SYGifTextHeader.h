@@ -12,11 +12,21 @@
 /**
  初始化方法
  @param  data   图片数据
- @param  isBig  是否是大图
+ @param  isBig 是否是大图 如果是小图片的话 建议设置此参数为NO
  @param  height 刷新控件高度
- @param  text   显示文字
- @return SYGifHeader
+ @return SYGifTextHeader
  */
-+ (instancetype)textGifheaderWithData:(NSData*)data isBig:(BOOL)isBig height:(CGFloat)height text:(NSString*)text callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
++ (instancetype)textGifheaderWithData:(NSData*)data isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
+
+/**
+ 初始化方法
+ @param  data 图片数据
+ @param  orientation 刷新控件的方向
+ @param  isBig 是否是大图 如果是小图片的话 建议设置此参数为NO
+ @param  width 刷新控件宽度
+ @return SYGifTextHeader
+ */
++ (instancetype)textGifheaderWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig width:(CGFloat)width callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
+
 
 @end

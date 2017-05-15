@@ -126,13 +126,17 @@
 
 - (void)stopAnimating
 {
-    if (self.animated) return;
+    if (!self.animated) return;
     self.displayLink.paused = true;
     self.animated = false;
 }
 
+- (void)dealloc{
+    NSLog(@"dealloc===%@",self);
+}
 - (void)refreshDisplay
 {
+    NSLog(@"refreshDisplayrefreshDisplayrefreshDisplayrefreshDisplay");
     if (!self.animated||self.animatedImage==nil) return;
     CGFloat currentFrameDuration = [self.animatedImage frameDurationForImage:self.index];
     CGFloat delta = self.displayLink.timestamp - self.lastTimestamp;
@@ -179,17 +183,6 @@
     isRefreshing?[self.imageView startAnimating]:[self.imageView stopAnimating];
 }
 
-- (void)updateProgress:(CGFloat)progress
-{
-    if (!self.imageView.animatedImage.frameCount) return;
-    if (progress==1) {
-        [self.imageView startAnimating];
-    }else{
-        [self.imageView stopAnimating];
-        self.imageView.index = (int)(self.imageView.animatedImage.frameCount -1)*progress;
-    }
-}
-
 @end
 
 @implementation SYGifHeader
@@ -206,11 +199,33 @@
     return header;
 }
 
++ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig width:(CGFloat)width callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock
+{
+    SYGifHeader *header = [[SYGifHeader alloc] init];
+    header.orientation = orientation;
+    BOOL isFooter = NO;
+    if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
+        isFooter = YES;
+    }
+    header.isFooter = isFooter;
+    header.hiddenArrow = YES;
+    header.hiddenIndictorView = YES;
+    header.sy_width = width;
+    header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:width];
+    header.beginBlock = finishRefreshBlock;
+    return header;
+}
+
 - (void)beginRefreshing
 {
     [super beginRefreshing];
     [self.gifItem updateState:YES];
-    [self.gifItem updateProgress:0.5];
+}
+
+- (void)endRefreshing
+{
+    [super endRefreshing];
+    [self.gifItem updateState:NO];
 }
 
 - (void)setGifItem:(SYGifItem *)gifItem

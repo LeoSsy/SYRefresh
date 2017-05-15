@@ -57,6 +57,12 @@
 		2A08C3681EC941630035DD5E /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3671EC941630035DD5E /* TestCollectionViewController.m */; };
 		2A08C3691EC941630035DD5E /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3671EC941630035DD5E /* TestCollectionViewController.m */; };
 		2A08C36A1EC941630035DD5E /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3671EC941630035DD5E /* TestCollectionViewController.m */; };
+		2A08C36D1EC98C810035DD5E /* GifCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C36C1EC98C810035DD5E /* GifCollectionViewController.m */; };
+		2A08C36E1EC98C810035DD5E /* GifCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C36C1EC98C810035DD5E /* GifCollectionViewController.m */; };
+		2A08C36F1EC98C810035DD5E /* GifCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C36C1EC98C810035DD5E /* GifCollectionViewController.m */; };
+		2A08C3721EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3711EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m */; };
+		2A08C3731EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3711EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m */; };
+		2A08C3741EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3711EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +125,10 @@
 		2A08C3041EC404A90035DD5E /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		2A08C3661EC941630035DD5E /* TestCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
 		2A08C3671EC941630035DD5E /* TestCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
+		2A08C36B1EC98C810035DD5E /* GifCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifCollectionViewController.h; sourceTree = "<group>"; };
+		2A08C36C1EC98C810035DD5E /* GifCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifCollectionViewController.m; sourceTree = "<group>"; };
+		2A08C3701EC99E800035DD5E /* GIFTextHeaderCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFTextHeaderCollectionViewController.h; sourceTree = "<group>"; };
+		2A08C3711EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFTextHeaderCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +196,10 @@
 				2A08C3021EC404A90035DD5E /* SYShopDetailManagerController.m */,
 				2A08C3661EC941630035DD5E /* TestCollectionViewController.h */,
 				2A08C3671EC941630035DD5E /* TestCollectionViewController.m */,
+				2A08C36B1EC98C810035DD5E /* GifCollectionViewController.h */,
+				2A08C36C1EC98C810035DD5E /* GifCollectionViewController.m */,
+				2A08C3701EC99E800035DD5E /* GIFTextHeaderCollectionViewController.h */,
+				2A08C3711EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m */,
 				2A08C3031EC404A90035DD5E /* TestViewController.h */,
 				2A08C3041EC404A90035DD5E /* TestViewController.m */,
 				2A08C2B01EC404750035DD5E /* ViewController.h */,
@@ -388,10 +402,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A08C30E1EC404A90035DD5E /* SecondViewController.m in Sources */,
+				2A08C3721EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
 				2A08C31A1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C3111EC404A90035DD5E /* SYGifTextHeaderViewController.m in Sources */,
 				2A08C2B21EC404750035DD5E /* ViewController.m in Sources */,
 				2A08C3681EC941630035DD5E /* TestCollectionViewController.m in Sources */,
+				2A08C36D1EC98C810035DD5E /* GifCollectionViewController.m in Sources */,
 				2A08C3141EC404A90035DD5E /* SYGifViewController.m in Sources */,
 				2A08C2F41EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C2AF1EC404750035DD5E /* AppDelegate.m in Sources */,
@@ -413,9 +429,11 @@
 				2A08C3121EC404A90035DD5E /* SYGifTextHeaderViewController.m in Sources */,
 				2A08C3151EC404A90035DD5E /* SYGifViewController.m in Sources */,
 				2A08C3691EC941630035DD5E /* TestCollectionViewController.m in Sources */,
+				2A08C36E1EC98C810035DD5E /* GifCollectionViewController.m in Sources */,
 				2A08C2F51EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C30C1EC404A90035DD5E /* FistViewController.m in Sources */,
 				2A08C30F1EC404A90035DD5E /* SecondViewController.m in Sources */,
+				2A08C3731EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
 				2A08C31B1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C2C51EC404750035DD5E /* SYRefreshExampleTests.m in Sources */,
 				2A08C2E91EC404880035DD5E /* SYGifHeader.m in Sources */,
@@ -432,9 +450,11 @@
 				2A08C3131EC404A90035DD5E /* SYGifTextHeaderViewController.m in Sources */,
 				2A08C3161EC404A90035DD5E /* SYGifViewController.m in Sources */,
 				2A08C36A1EC941630035DD5E /* TestCollectionViewController.m in Sources */,
+				2A08C36F1EC98C810035DD5E /* GifCollectionViewController.m in Sources */,
 				2A08C2F61EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C30D1EC404A90035DD5E /* FistViewController.m in Sources */,
 				2A08C3101EC404A90035DD5E /* SecondViewController.m in Sources */,
+				2A08C3741EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
 				2A08C31C1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C2D01EC404750035DD5E /* SYRefreshExampleUITests.m in Sources */,
 				2A08C2EA1EC404880035DD5E /* SYGifHeader.m in Sources */,

@@ -30,8 +30,6 @@
 
 /**播放图片方法*/
 - (void)updateState:(BOOL)isRefreshing;
-/**更新图片进度值*/
-- (void)updateProgress:(CGFloat)progress;
 /**以下属性为辅助属性 用在解析图片时保存图片信息*/
 @property(nonatomic,strong)UIImage *image;
 @property(nonatomic,assign)CGFloat  duration;
@@ -86,10 +84,20 @@
 /**
  初始化方法
  @param  data 图片数据
- @param  isBig 是否是大图
+ @param  isBig 是否是大图 如果是小图片的话 建议设置此参数为NO
  @param  height 刷新控件高度
  @return SYGifHeader
  */
 + (instancetype)headerWithData:(NSData*)data isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
+
+/**
+ 初始化方法
+ @param  data 图片数据
+ @param  orientation 刷新控件的方向
+ @param  isBig 是否是大图 如果是小图片的话 建议设置此参数为NO
+ @param  width 刷新控件宽度
+ @return SYGifHeader
+ */
++ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig width:(CGFloat)width callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
 
 @end

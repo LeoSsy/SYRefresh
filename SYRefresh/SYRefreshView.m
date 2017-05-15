@@ -7,21 +7,7 @@
 //
 
 #import "SYRefreshView.h"
-#import "SYSYRefreshConst.h"
 #import <objc/runtime.h>
-
-@interface UIView(SY)
-@property(nonatomic ,assign) CGFloat left;
-@property(nonatomic ,assign) CGFloat top;
-@property(nonatomic ,assign) CGFloat width;
-@property(nonatomic ,assign) CGFloat height;
-@property(nonatomic ,assign,readonly) CGFloat right;
-@property(nonatomic ,assign,readonly) CGFloat bottom;
-@property(nonatomic ,assign) CGPoint center;
-@property(nonatomic ,assign) CGFloat centerX;
-@property(nonatomic ,assign) CGFloat centerY;
-@property(nonatomic ,assign) CGSize size;
-@end
 
 @implementation SYTitleItem
 + (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color
@@ -51,8 +37,6 @@
 @property(nonatomic ,assign) SYRefreshViewState state;
 /***记录上一次控件的状态*/
 @property(nonatomic ,assign) SYRefreshViewState lastState;
-/***记录用户设置的方向*/
-@property(nonatomic ,assign) SYRefreshViewOrientation orientation;
 /***记录控件不同的状态的样式*/
 @property(nonatomic ,strong) SYTitleItem *headerNormalItem;
 @property(nonatomic ,strong) SYTitleItem *headerPullingItem;
@@ -135,6 +119,7 @@
     return view;
 }
 
+
 + (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation width:(CGFloat)width  completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock
 {
     SYRefreshView *view = [[SYRefreshView alloc] init];
@@ -177,7 +162,7 @@
 {
     [super willMoveToSuperview:newSuperview];
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
-    if ([newSuperview isKindOfClass:[UICollectionView class]]) {
+    if ([self refreshOriIsLeftOrRight]) {
         self.width = self.sy_width;
         self.left = 0;
         if (!self.isFooter) {
@@ -196,6 +181,7 @@
         self.width = newSuperview.width;
         self.scrollview.alwaysBounceVertical = YES;
     }
+    
     self.scrollview = (UIScrollView*)newSuperview;
     [self removeObservers];
     [self addObservers];
@@ -409,21 +395,20 @@
 {
     // 当前的contentOffset
     CGFloat offsetX = self.scrollview.contentOffset.x;
-    NSLog(@"contentOffset.x==%f==left==contentsize==%f",self.scrollview.contentOffset.x,self.scrollview.contentSize.width);
     if (self.scrollview.isDragging) {
         self.alpha = 1.0;
         if (!self.isFooter) {
             // 头部控件特殊处理 如：有导航栏遮挡问题处理
             CGFloat justOffsetX = - self.scrollview.contentInset.left;
-            CGFloat pullingOffsetX = justOffsetX - self.sy_width;
-            CGFloat dragingProgress = (justOffsetX - offsetX) / self.sy_width;
+            CGFloat pullingOffsetX = justOffsetX - self.width;
+            CGFloat dragingProgress = (justOffsetX - offsetX) / self.width;
             self.alpha = dragingProgress;
             if (self.state == SYRefreshViewStateIdle&&offsetX<pullingOffsetX) { //负数 往右边
                 self.state = SYRefreshViewPulling;
                 [UIView animateWithDuration:SYAnimationDuration animations:^{
                         self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
                 }];
-            }else if (self.state == SYRefreshViewPulling&&offsetX>pullingOffsetX){//负数 往左边
+            }else if (self.state == SYRefreshViewPulling&&offsetX>pullingOffsetX){//正数往左边
                 self.state = SYRefreshViewStateIdle;
                 [UIView animateWithDuration:SYAnimationDuration animations:^{
                     self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
@@ -454,7 +439,9 @@
 {
     if (state == SYRefreshViewStateIdle) {
         self.headerNormalItem = item;
-        [self setTitleAttrText:item.title color:item.color];
+        if (self.state != SYRefreshViewRefreshing) {
+            [self setTitleAttrText:item.title color:item.color];
+        }
     }else if (state == SYRefreshViewPulling){
         self.headerPullingItem = item;
     }else if (state == SYRefreshViewRefreshing){
@@ -517,7 +504,7 @@
 {
     if (!self.isFooter) { //头部刷新处理
         [UIView animateWithDuration:SYAnimationDuration animations:^{
-            self.scrollview.contentOffset = CGPointMake(- self.width-self.scrollview.contentInset.left, 0);
+            self.scrollview.contentOffset = CGPointMake(-self.width-self.scrollview.contentInset.left, 0);
             self.scrollview.contentInset = UIEdgeInsetsMake(self.scrollview.contentInset.top, self.scrollview.contentInset.left+self.width, self.scrollview.contentInset.bottom, self.scrollview.contentInset.right);
         }completion:^(BOOL finished) {
             [self excuteBlock];
@@ -606,10 +593,6 @@
 
 
 #pragma mark 内部私有方法
-/**
- 获取当前视图所属的控制器
- @return  当前视图所属的控制器
- */
 -(UIViewController *)currentViewController{
     UIViewController *vc;
     for (UIView* next = [self superview]; next; next = next.superview) {
@@ -622,10 +605,6 @@
     return vc;
 }
 
-/**
- 判断当前的控件方向是否是左右刷新
- @return  是返回yes 否返回no
- */
 - (BOOL)refreshOriIsLeftOrRight
 {
     if (self.orientation&&

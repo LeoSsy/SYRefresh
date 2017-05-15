@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYSYRefreshConst.h"
 
 /**刷新控件的状态 */
 typedef NS_ENUM(NSInteger, SYRefreshViewState) {
@@ -68,6 +69,8 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 - (void)beginRefreshing;
 /**结束刷新*/
 - (void)endRefreshing;
+/***记录用户设置刷新控件的方向*/
+@property(nonatomic ,assign) SYRefreshViewOrientation orientation;
 /***标题控件*/
 @property(nonatomic,strong)UILabel *titleL;
 /***是否添加到底部*/
@@ -90,5 +93,20 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 - (void)prepare;
 /**监听偏移量*/
 - (void)scrollViewDidScrollChange;
+/**判断当前的控件方向是否是左右刷新 是返回yes 否返回no*/
+- (BOOL)refreshOriIsLeftOrRight;
+@end
+
+@interface UIView(SY)
+@property(nonatomic ,assign) CGFloat left;
+@property(nonatomic ,assign) CGFloat top;
+@property(nonatomic ,assign) CGFloat width;
+@property(nonatomic ,assign) CGFloat height;
+@property(nonatomic ,assign,readonly) CGFloat right;
+@property(nonatomic ,assign,readonly) CGFloat bottom;
+@property(nonatomic ,assign) CGPoint center;
+@property(nonatomic ,assign) CGFloat centerX;
+@property(nonatomic ,assign) CGFloat centerY;
+@property(nonatomic ,assign) CGSize size;
 @end
 
