@@ -85,6 +85,21 @@
 //    [self.tableView.sy_footer setHeaderForState:SYRefreshViewPulling item:item2];
 //    [self.tableView.sy_footer setHeaderForState:SYRefreshViewRefreshing item:item3];
     
+    self.tableView.sectionHeaderHeight = 45;
+    self.tableView.sectionFooterHeight = 0;
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 5;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 45)];
+    view.backgroundColor = [UIColor redColor];
+    return view;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
