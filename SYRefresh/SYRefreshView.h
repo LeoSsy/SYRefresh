@@ -78,12 +78,12 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 @property(nonatomic ,assign) CGFloat arrowRightInset;
 /***设置控件的高度*/
 @property(nonatomic ,assign) CGFloat sy_height;
-/***设置控件的宽度*/
-@property(nonatomic ,assign) CGFloat sy_width;
 /***是否隐藏箭头*/
 @property(nonatomic ,assign,getter=isHiddenArrow) BOOL hiddenArrow;
 /***是否隐藏菊花*/
 @property(nonatomic ,assign,getter=isHiddenIndictorView) BOOL hiddenIndictorView;
+/**是否需要隐藏全部子控件*/
+@property(nonatomic ,assign,getter=isHideAllSubviews) BOOL hideAllSubviews;
 /***设置头部刷新状态的回调*/
 @property(nonatomic ,copy) SYRefreshViewbeginRefreshingCompletionBlock beginBlock;
 /***设置尾部刷新状态的回调*/

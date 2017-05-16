@@ -9,7 +9,6 @@
 #import "SYGifViewController.h"
 #import "SYRefresh.h"
 
-
 @interface SYGifViewController ()
 
 @end
@@ -33,7 +32,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 500;
+    return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

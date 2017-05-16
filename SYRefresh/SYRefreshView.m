@@ -9,6 +9,7 @@
 #import "SYRefreshView.h"
 #import <objc/runtime.h>
 #import "SYSYRefreshConst.h"
+#import "UIScrollView+SYRefresh.h"
 
 @implementation SYTitleItem
 + (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color
@@ -38,8 +39,6 @@
 @property(nonatomic ,assign) SYRefreshViewState state;
 /***记录上一次控件的状态*/
 @property(nonatomic ,assign) SYRefreshViewState lastState;
-/***记录scrollview的拖拽手势*/
-@property(nonatomic,strong)UIPanGestureRecognizer *pan;
 /***记录控件不同的状态的样式*/
 @property(nonatomic ,strong) SYTitleItem *headerNormalItem;
 @property(nonatomic ,strong) SYTitleItem *headerPullingItem;
@@ -122,6 +121,7 @@
     if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
         isFooter = YES;
     }
+    view.sy_height = width;
     view.isFooter = isFooter;
     view.orientation = orientation;
     if (!view.isFooter) {
@@ -132,7 +132,6 @@
     if ([view refreshOriIsLeftOrRight]) {
         view.titleL.numberOfLines = 0;
     }
-    view.sy_width = width;
     return view;
 }
 
@@ -158,15 +157,15 @@
     [super willMoveToSuperview:newSuperview];
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
     self.scrollview = (UIScrollView*)newSuperview;
-    self.pan = self.scrollview.panGestureRecognizer;
     if ([self refreshOriIsLeftOrRight]) {
-        self.width = self.sy_width;
+        self.width = self.sy_height;
         self.left = 0;
         if (!self.isFooter) {
             self.left = -self.width;
         }
         self.height = newSuperview.height;
         self.scrollview.alwaysBounceHorizontal = YES;
+
     }else{
         self.height = self.sy_height;
         self.left = 0;
@@ -220,6 +219,14 @@
     }else{
         self.indicatorView.hidden = NO;
     }
+}
+
+- (void)setHideAllSubviews:(BOOL)hideAllSubviews
+{
+    _hideAllSubviews = hideAllSubviews;
+    self.titleL.hidden = YES;
+    self.indicatorView.hidden = YES;
+    self.arrowView.hidden = YES;
 }
 
 - (void)setSy_height:(CGFloat)sy_height
@@ -302,34 +309,28 @@
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld;
     [self.scrollview addObserver:self forKeyPath:SYKeyPathContentOffset options:options context:nil];
     [self.scrollview addObserver:self forKeyPath:SYKeyPathContentSize options:options context:nil];
-    [self.scrollview addObserver:self forKeyPath:SYKeyPathPanState options:options context:nil];
-
 }
 
 - (void)removeObservers
 {
     [self.superview removeObserver:self forKeyPath:SYKeyPathContentOffset];
     [self.superview removeObserver:self forKeyPath:SYKeyPathContentSize];
-    [self.superview removeObserver:self forKeyPath:SYKeyPathPanState];
-
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if (!self.userInteractionEnabled) return;
-    if (self.hidden)  return;
     if ([keyPath isEqualToString:SYKeyPathContentOffset]) {
         [self scrollViewDidScrollChange];
-    }else if ([keyPath isEqualToString:SYKeyPathContentSize]){
+    }
+    if (self.hidden)  return;
+    if ([keyPath isEqualToString:SYKeyPathContentSize]){
         [self scrollViewContentSizeDidChange];
-    }else if ([keyPath isEqualToString:SYKeyPathPanState]){
-        NSLog(@"SYKeyPathPanStateSYKeyPathPanStateSYKeyPathPanStateSYKeyPathPanState");
     }
 }
 
 - (void)scrollViewDidScrollChange
 {
-    // 正在刷新状态
     if (self.state == SYRefreshViewRefreshing) return;
     if ([self refreshOriIsLeftOrRight]) {
         [self refreshOffsetXchanged];
@@ -340,11 +341,18 @@
 
 - (void)scrollViewContentSizeDidChange
 {
-    // 正在刷新状态
     CGSize contentsize = self.scrollview.contentSize;
     if (self.orientation == SYRefreshViewOrientationRight) {
         if (self.left != contentsize.width) {
+            //当内容不满一个屏幕的时候就隐藏底部的刷新控件
+            if (contentsize.width<self.scrollview.width) {
+                self.scrollview.sy_footer.alpha = 0.f;
+            }
             self.left = contentsize.width;
+        }
+    }else if(self.orientation == SYRefreshViewOrientationBottom || self.isFooter){
+        if (self.top != contentsize.height) {
+            self.top = contentsize.height;
         }
     }
 }
@@ -374,12 +382,18 @@
                 }];
             }
         }else{
-            if (self.state == SYRefreshViewStateIdle&&offsetY>self.height) { //正数 往上拉
+            CGFloat contentS = self.scrollview.contentSize.height;
+            if (contentS<self.scrollview.height) { //内容不足一个屏幕 就不显示尾部的刷新
+                self.scrollview.sy_footer.alpha = 0.f;
+                return;
+            }
+            CGFloat pullingOffsetX = contentS - self.scrollview.height+self.height;
+            if (self.state == SYRefreshViewStateIdle&&offsetY>pullingOffsetX) { //正数 往上拉
                 self.state = SYRefreshViewPulling;
                 [UIView animateWithDuration:SYAnimationDuration animations:^{
                     self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
                 }];
-            }else if (self.state == SYRefreshViewPulling&&offsetY<self.height*0.82){//负数 往下弹
+            }else if (self.state == SYRefreshViewPulling&&offsetY<pullingOffsetX){//负数 往下弹
                 self.state = SYRefreshViewStateIdle;
                 [UIView animateWithDuration:SYAnimationDuration animations:^{
                     self.arrowView.transform = CGAffineTransformIdentity;
@@ -417,7 +431,12 @@
             }
         }else{
             
-            CGFloat pullingOffsetX = self.scrollview.contentSize.width - self.scrollview.width+self.width;
+            CGFloat contentS = self.scrollview.contentSize.width;
+            if (contentS<self.scrollview.width) { //内容不足一个屏幕 就不显示尾部的刷新
+                self.scrollview.sy_footer.alpha = 0.f;
+                return;
+            }
+            CGFloat pullingOffsetX = contentS - self.scrollview.width+self.width;
             if (self.state == SYRefreshViewStateIdle&&offsetX>pullingOffsetX) { //正数 往左边
                 self.state = SYRefreshViewPulling;
                 [UIView animateWithDuration:SYAnimationDuration animations:^{
@@ -434,7 +453,6 @@
         [self beginRefreshing];
     }
 }
-
 
 - (void)setHeaderForState:(SYRefreshViewState)state item:(SYTitleItem*)item;
 {
@@ -475,12 +493,14 @@
 - (void)beginRefreshing
 {
     if (self.state == SYRefreshViewStateIdle) {
-        [UIView animateWithDuration:SYAnimationDuration+0.3 animations:^{
+        [UIView animateWithDuration:SYAnimationDuration animations:^{
             self.alpha = 1.0;
         }];
     }
     self.state = SYRefreshViewRefreshing;
-    [self.indicatorView startAnimating];
+    if (!self.hideAllSubviews) {
+        [self.indicatorView startAnimating];
+    }
     self.arrowView.hidden = YES;
     if ([self refreshOriIsLeftOrRight]) {
         [self beginRefreshingOffsetX];
@@ -528,6 +548,7 @@
 - (void)endRefreshing
 {
     [self.indicatorView stopAnimating];
+    self.arrowView.transform = CGAffineTransformIdentity;
     if ([self refreshOriIsLeftOrRight]) {
         [self endRefreshingOffsetX];
     }else{
@@ -542,8 +563,10 @@
         }completion:^(BOOL finished) {
             self.alpha  = 0.f;
             self.state = SYRefreshViewStateIdle;
-            if (!self.isHiddenArrow) {
-                self.arrowView.hidden = NO;
+            if (!self.isHideAllSubviews) {
+                if (!self.isHiddenArrow) {
+                    self.arrowView.hidden = NO;
+                }
             }
         }];
     }else{ //尾部结束刷新处理
@@ -552,8 +575,10 @@
         }completion:^(BOOL finished) {
             self.alpha  = 0.f;
             self.state = SYRefreshViewStateIdle;
-            if (!self.isHiddenArrow) {
-                self.arrowView.hidden = NO;
+            if (!self.isHideAllSubviews) {
+                if (!self.isHiddenArrow) {
+                    self.arrowView.hidden = NO;
+                }
             }
         }];
     }
@@ -586,7 +611,6 @@
     }
 }
 
-
 - (void)excuteBlock{
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -598,7 +622,6 @@
         }
     });
 }
-
 
 #pragma mark 内部私有方法
 -(UIViewController *)currentViewController{
@@ -625,6 +648,7 @@
         return NO;
     }
 }
+
 @end
 
 @implementation UIView(SY)

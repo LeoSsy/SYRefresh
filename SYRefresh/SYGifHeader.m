@@ -188,9 +188,8 @@
 {
     SYGifHeader *header = [[SYGifHeader alloc] init];
     header.isFooter = NO;
-    header.hiddenArrow = YES;
-    header.hiddenIndictorView = YES;
     header.sy_height = height;
+    header.hideAllSubviews = YES;
     header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:height];
     header.beginBlock = finishRefreshBlock;
     return header;
@@ -204,14 +203,14 @@
     if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
         isFooter = YES;
     }
+    header.sy_height = width;
     header.isFooter = isFooter;
-    header.hiddenArrow = YES;
-    header.hiddenIndictorView = YES;
-    header.sy_width = width;
+    header.hideAllSubviews = YES;
     header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:width];
     header.beginBlock = finishRefreshBlock;
     return header;
 }
+
 
 - (void)beginRefreshing
 {

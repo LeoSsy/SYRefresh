@@ -34,10 +34,8 @@
     if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
         isFooter = YES;
     }
+    header.sy_height = width;
     header.isFooter = isFooter;
-    header.hiddenArrow = YES;
-    header.hiddenIndictorView = YES;
-    header.sy_width = width;
     header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:width];
     header.beginBlock = finishRefreshBlock;
     return header;
@@ -46,6 +44,8 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.hiddenArrow = YES;
+        self.hiddenIndictorView = YES;
         self.titleL.font = [UIFont systemFontOfSize:12];
         self.titleL.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.gifItem.imageView];

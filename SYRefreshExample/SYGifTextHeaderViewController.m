@@ -34,7 +34,6 @@
     [self.tableView.sy_header setHeaderForState:SYRefreshViewStateIdle item:item1];
     [self.tableView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
     [self.tableView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

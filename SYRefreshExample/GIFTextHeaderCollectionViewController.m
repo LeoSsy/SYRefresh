@@ -49,16 +49,13 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
     
-    
     SYTitleItem *item4 = [SYTitleItem itemWithTitle:@"滑动加载" color:[UIColor redColor]];
     SYTitleItem *item5 = [SYTitleItem itemWithTitle:@"释放加载" color:[UIColor greenColor]];
     SYTitleItem *item6 = [SYTitleItem itemWithTitle:@"加载中..." color:[UIColor brownColor]];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewStateIdle item:item4];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewPulling item:item5];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewRefreshing item:item6];
-    
-    
-    
+
 }
 
 #pragma mark <UICollectionViewDataSource>

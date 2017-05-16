@@ -17,7 +17,7 @@
 @implementation TestCollectionViewController
 
 static NSString * const reuseIdentifier = @"Cell";
-
+static int count = 90;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -26,6 +26,8 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationLeft width:60 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.sy_header endRefreshing];
+            count = 10;
+            [self.collectionView reloadData];
         });
     }];
     
@@ -39,6 +41,8 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationRight width:80 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.sy_footer endRefreshing];
+            count+=5;
+            [self.collectionView reloadData];
         });
     }];
     
@@ -53,7 +57,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
