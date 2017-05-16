@@ -37,6 +37,8 @@
 @property(nonatomic ,assign) SYRefreshViewState state;
 /***记录上一次控件的状态*/
 @property(nonatomic ,assign) SYRefreshViewState lastState;
+/***记录scrollview的拖拽手势*/
+@property(nonatomic,strong)UIPanGestureRecognizer *pan;
 /***记录控件不同的状态的样式*/
 @property(nonatomic ,strong) SYTitleItem *headerNormalItem;
 @property(nonatomic ,strong) SYTitleItem *headerPullingItem;
@@ -154,6 +156,8 @@
 {
     [super willMoveToSuperview:newSuperview];
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
+    self.scrollview = (UIScrollView*)newSuperview;
+    self.pan = self.scrollview.panGestureRecognizer;
     if ([self refreshOriIsLeftOrRight]) {
         self.width = self.sy_width;
         self.left = 0;
@@ -174,7 +178,6 @@
         self.scrollview.alwaysBounceVertical = YES;
     }
     
-    self.scrollview = (UIScrollView*)newSuperview;
     [self removeObservers];
     [self addObservers];
 }
@@ -298,6 +301,7 @@
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld;
     [self.scrollview addObserver:self forKeyPath:SYKeyPathContentOffset options:options context:nil];
     [self.scrollview addObserver:self forKeyPath:SYKeyPathContentSize options:options context:nil];
+    [self.scrollview addObserver:self forKeyPath:SYKeyPathPanState options:options context:nil];
 
 }
 
@@ -305,6 +309,8 @@
 {
     [self.superview removeObserver:self forKeyPath:SYKeyPathContentOffset];
     [self.superview removeObserver:self forKeyPath:SYKeyPathContentSize];
+    [self.superview removeObserver:self forKeyPath:SYKeyPathPanState];
+
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -315,6 +321,8 @@
         [self scrollViewDidScrollChange];
     }else if ([keyPath isEqualToString:SYKeyPathContentSize]){
         [self scrollViewContentSizeDidChange];
+    }else if ([keyPath isEqualToString:SYKeyPathPanState]){
+        NSLog(@"SYKeyPathPanStateSYKeyPathPanStateSYKeyPathPanStateSYKeyPathPanState");
     }
 }
 

@@ -131,12 +131,8 @@
     self.animated = false;
 }
 
-- (void)dealloc{
-    NSLog(@"dealloc===%@",self);
-}
 - (void)refreshDisplay
 {
-    NSLog(@"refreshDisplayrefreshDisplayrefreshDisplayrefreshDisplay");
     if (!self.animated||self.animatedImage==nil) return;
     CGFloat currentFrameDuration = [self.animatedImage frameDurationForImage:self.index];
     CGFloat delta = self.displayLink.timestamp - self.lastTimestamp;
