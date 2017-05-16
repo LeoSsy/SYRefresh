@@ -3,6 +3,7 @@
 
 示例程序：
 ![MacDown Screenshot](./SYRefreshDemo.gif)
+![MacDown Screenshot](./collectionrefresh.gif)
 
 默认刷新控件使用方法：
 	
@@ -46,5 +47,7 @@ GIF图片加文字刷新控件使用方法：
         });
     }];
     [self.tableView.sy_header beginRefreshing];
+
+UICollectionView的使用方法同上，如果UICollectionView需要支持水平刷新功能，请设置布局的方向为水平方向即可！
     
  更多功能敬请期待！ 此控件会持续的更新和完善

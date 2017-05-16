@@ -61,16 +61,8 @@
 
 - (void)setTitleAttrText:(NSString*)text color:(UIColor*)color
 {
-    if ([self refreshOriIsLeftOrRight]) {
-        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-        style.lineBreakMode = NSLineBreakByCharWrapping;
-        style.alignment = NSTextAlignmentCenter;
-        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:SYRefreshViewTitleFont,NSParagraphStyleAttributeName:style,NSForegroundColorAttributeName:color}];
-        self.titleL.attributedText = attr;
-    }else{
         self.titleL.text = text;
         self.titleL.textColor = color;
-    }
 }
 
 - (UIActivityIndicatorView *)indicatorView
@@ -439,13 +431,19 @@
 {
     if (state == SYRefreshViewStateIdle) {
         self.headerNormalItem = item;
-        if (self.state != SYRefreshViewRefreshing) {
+        if (self.state ==SYRefreshViewStateIdle) {
             [self setTitleAttrText:item.title color:item.color];
         }
     }else if (state == SYRefreshViewPulling){
         self.headerPullingItem = item;
+        if (self.state ==SYRefreshViewPulling) {
+            [self setTitleAttrText:item.title color:item.color];
+        }
     }else if (state == SYRefreshViewRefreshing){
         self.headerRefreshingItem = item;
+        if (self.state == SYRefreshViewRefreshing) {
+            [self setTitleAttrText:item.title color:item.color];
+        }
     }
 }
 
@@ -581,6 +579,7 @@
 
 
 - (void)excuteBlock{
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.beginBlock) {
             self.beginBlock();
@@ -613,7 +612,7 @@
         return NO;
     }else if(self.orientation==SYRefreshViewOrientationLeft || self.orientation==SYRefreshViewOrientationRight){//左右刷新
         return YES;
-    }else{ //没有设置方向 默认就是上下刷新
+    }else{  //没有设置方向 默认就是上下刷新
         return NO;
     }
 }

@@ -60,20 +60,22 @@
     
     CGSize imgSize = self.gifItem.imageView.image.size;
     self.gifItem.imageView.frame =CGRectMake(CGRectGetMinX(self.titleL.frame)-imgSize.width*0.5, 0, imgSize.width*0.5, imgSize.height*0.5);
-    if ([self refreshOriIsLeftOrRight]) {
+    
+    if ([self refreshOriIsLeftOrRight]) { //水平刷新的时候才需要调整位置和尺寸
         self.gifItem.imageView.centerY = self.centerY;
         self.gifItem.imageView.left = 0;
-        self.titleL.left = 0;
         self.titleL.width = self.width;
         self.titleL.height = SYVerticalOroTitleW;
         self.titleL.top = CGRectGetMaxY(self.gifItem.imageView.frame)+SYArrowRightMargin;
+        self.titleL.centerX = self.gifItem.imageView.centerX;
+
     }
 }
 
-- (void)dealloc
+- (void)removeFromSuperview
 {
+    [super removeFromSuperview];
     self.gifItem = nil;
-    NSLog(@"deallocdeallocdeallocdeallocdealloc");
 }
 
 

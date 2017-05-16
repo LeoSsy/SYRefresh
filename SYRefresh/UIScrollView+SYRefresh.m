@@ -44,4 +44,14 @@ static const char SYRefreshFooterKey = '\1';
     return objc_getAssociatedObject(self, &SYRefreshFooterKey);
 }
 
+
+- (void)removeFromSuperview
+{
+    [super removeFromSuperview];
+    
+    self.sy_header = nil;
+    self.sy_footer = nil;
+    
+}
+
 @end
