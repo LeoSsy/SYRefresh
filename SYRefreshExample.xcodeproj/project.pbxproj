@@ -134,6 +134,7 @@
 		2A08C3711EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFTextHeaderCollectionViewController.m; sourceTree = "<group>"; };
 		2A08C3751ECA903D0035DD5E /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
 		2A08C3761ECA903D0035DD5E /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
+		2A08C37A1ECA96210035DD5E /* SYRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYRefresh.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +258,7 @@
 				2A08C2E31EC404880035DD5E /* SYRefreshView.h */,
 				2A08C2E41EC404880035DD5E /* SYRefreshView.m */,
 				2A08C2E51EC404880035DD5E /* SYSYRefreshConst.h */,
+				2A08C37A1ECA96210035DD5E /* SYRefresh.h */,
 				2A08C2E61EC404880035DD5E /* UIScrollView+SYRefresh.h */,
 				2A08C2E71EC404880035DD5E /* UIScrollView+SYRefresh.m */,
 			);

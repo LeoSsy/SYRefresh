@@ -8,6 +8,7 @@
 
 #import "SYRefreshView.h"
 #import <objc/runtime.h>
+#import "SYSYRefreshConst.h"
 
 @implementation SYTitleItem
 + (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color

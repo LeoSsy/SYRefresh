@@ -7,9 +7,8 @@
 //
 
 #import "TestCollectionViewController.h"
-#import "SYRefreshView.h"
-#import "UIScrollView+SYRefresh.h"
-#import "SYGifHeader.h"
+#import "SYRefresh.h"
+
 
 @interface TestCollectionViewController ()
 

@@ -7,8 +7,8 @@
 //
 
 #import "SYGifViewController.h"
-#import "SYGifHeader.h"
-#import "UIScrollView+SYRefresh.h"
+#import "SYRefresh.h"
+
 
 @interface SYGifViewController ()
 

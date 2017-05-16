@@ -7,8 +7,7 @@
 //
 
 #import "TestTableViewController.h"
-#import "SYGifHeader.h"
-#import "UIScrollView+SYRefresh.h"
+#import "SYRefresh.h"
 
 @interface TestTableViewController ()
 

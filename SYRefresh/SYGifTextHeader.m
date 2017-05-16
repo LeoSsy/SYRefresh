@@ -7,7 +7,7 @@
 //
 
 #import "SYGifTextHeader.h"
-
+#import "SYSYRefreshConst.h"
 @interface SYGifTextHeader()
 @property(nonatomic,strong)NSString *textG;
 @end

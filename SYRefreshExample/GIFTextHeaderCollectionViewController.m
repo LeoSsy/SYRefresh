@@ -7,10 +7,7 @@
 //
 
 #import "GIFTextHeaderCollectionViewController.h"
-#import "SYRefreshView.h"
-#import "UIScrollView+SYRefresh.h"
-#import "SYGifHeader.h"
-#import "SYGifTextHeader.h"
+#import "SYRefresh.h"
 
 @interface GIFTextHeaderCollectionViewController ()
 

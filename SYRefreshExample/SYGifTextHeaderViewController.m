@@ -7,8 +7,7 @@
 //
 
 #import "SYGifTextHeaderViewController.h"
-#import "SYGifTextHeader.h"
-#import "UIScrollView+SYRefresh.h"
+#import "SYRefresh.h"
 
 @interface SYGifTextHeaderViewController ()
 

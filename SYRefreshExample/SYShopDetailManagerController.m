@@ -7,7 +7,7 @@
 //
 
 #import "SYShopDetailManagerController.h"
-#import "UIScrollView+SYRefresh.h"
+#import "SYRefresh.h"
 @interface SYShopDetailManagerController ()<UIScrollViewDelegate>
 {
     UIViewController *_contentVc;

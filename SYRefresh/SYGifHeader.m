@@ -7,6 +7,7 @@
 //
 
 #import "SYGifHeader.h"
+#import "SYRefreshView.h"
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 

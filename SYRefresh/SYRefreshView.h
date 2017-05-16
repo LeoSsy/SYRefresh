@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SYSYRefreshConst.h"
 
 /**刷新控件的状态 */
 typedef NS_ENUM(NSInteger, SYRefreshViewState) {
