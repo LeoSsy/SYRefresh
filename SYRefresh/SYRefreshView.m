@@ -147,6 +147,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.state = SYRefreshViewStateIdle;
     self.alpha = 0.f;
+    self.arrowRotation = YES; //默认箭头图片可以旋转
+    self.arrowView.transform = CGAffineTransformIdentity;
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -372,7 +374,7 @@
                 self.state = SYRefreshViewPulling;
                 if (self.isArrowRotation) {
                     [UIView animateWithDuration:SYAnimationDuration animations:^{
-                            self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
+                        self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
                     }];
                 }
             }else if (self.state == SYRefreshViewPulling&&offsetX>pullingOffsetX){//正数往左边
@@ -458,7 +460,11 @@
     }
     self.titleL.textColor = item.color?item.color:normalColor;
     self.titleL.font = item.font?item.font:SYRefreshViewTitleFont;
-    self.arrowView.image = item.image?item.image:[self arrowNormalImage];
+    if (![self refreshOriIsLeftOrRight]) { //如果是水平刷新 需要特殊处理
+        self.arrowView.image = item.image?item.image:[self arrowNormalImage];
+    }else{
+        self.arrowView.image = item.image?item.image:[self arrowLrImage];
+    }
     [self setNeedsLayout];
 }
 
