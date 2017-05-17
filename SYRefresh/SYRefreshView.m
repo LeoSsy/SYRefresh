@@ -12,18 +12,22 @@
 #import "UIScrollView+SYRefresh.h"
 
 @implementation SYTitleItem
-+ (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color
++ (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color font:(CGFloat)fontSize imageName:(NSString *)imageName
 {
     SYTitleItem *item = [[SYTitleItem alloc] init];
     item.title = title;
     item.color = color;
+    item.font = [UIFont systemFontOfSize:fontSize];
+    item.image = [UIImage imageNamed:imageName];
     return item;
 }
-+ (instancetype)itemWithTitle:(NSString*)title hexColor:(long)hexColor
++ (instancetype)itemWithTitle:(NSString*)title hexColor:(long)hexColor font:(CGFloat)fontSize imageName:(NSString *)imageName
 {
     SYTitleItem *item = [[SYTitleItem alloc] init];
     item.title = title;
     item.color = SYColorFromRGB(hexColor);
+    item.font = [UIFont systemFontOfSize:fontSize];
+    item.image = [UIImage imageNamed:imageName];
     return item;
 }
 @end
@@ -59,12 +63,6 @@
         [self addSubview:_titleL];
     }
     return _titleL;
-}
-
-- (void)setTitleAttrText:(NSString*)text color:(UIColor*)color
-{
-        self.titleL.text = text;
-        self.titleL.textColor = color;
 }
 
 - (UIActivityIndicatorView *)indicatorView
@@ -372,14 +370,18 @@
             self.alpha = dragingProgress;
             if (self.state == SYRefreshViewStateIdle&&offsetY<pullingOffsetY) { //负数 往下拉
                 self.state = SYRefreshViewPulling;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                    self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                        self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+                    }];
+                }
             }else if (self.state == SYRefreshViewPulling&&offsetY>pullingOffsetY){//正数 往回弹
                 self.state = SYRefreshViewStateIdle;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                    self.arrowView.transform = CGAffineTransformIdentity;
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                        self.arrowView.transform = CGAffineTransformIdentity;
+                    }];
+                }
             }
         }else{
             CGFloat contentS = self.scrollview.contentSize.height;
@@ -390,14 +392,18 @@
             CGFloat pullingOffsetX = contentS - self.scrollview.height+self.height;
             if (self.state == SYRefreshViewStateIdle&&offsetY>pullingOffsetX) { //正数 往上拉
                 self.state = SYRefreshViewPulling;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                    self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                        self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+                    }];
+                }
             }else if (self.state == SYRefreshViewPulling&&offsetY<pullingOffsetX){//负数 往下弹
                 self.state = SYRefreshViewStateIdle;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                    self.arrowView.transform = CGAffineTransformIdentity;
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                        self.arrowView.transform = CGAffineTransformIdentity;
+                    }];
+                }
             }
         }
     }else if (self.state == SYRefreshViewPulling){
@@ -420,14 +426,18 @@
             self.alpha = dragingProgress;
             if (self.state == SYRefreshViewStateIdle&&offsetX<pullingOffsetX) { //负数 往右边
                 self.state = SYRefreshViewPulling;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                        self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                            self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
+                    }];
+                }
             }else if (self.state == SYRefreshViewPulling&&offsetX>pullingOffsetX){//正数往左边
                 self.state = SYRefreshViewStateIdle;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                    self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                        self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
+                    }];
+                }
             }
         }else{
             
@@ -439,14 +449,18 @@
             CGFloat pullingOffsetX = contentS - self.scrollview.width+self.width;
             if (self.state == SYRefreshViewStateIdle&&offsetX>pullingOffsetX) { //正数 往左边
                 self.state = SYRefreshViewPulling;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                    self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                        self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
+                    }];
+                }
             }else if (self.state == SYRefreshViewPulling&&offsetX<pullingOffsetX){//负数 往右边
                 self.state = SYRefreshViewStateIdle;
-                [UIView animateWithDuration:SYAnimationDuration animations:^{
-                    self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
-                }];
+                if (self.isArrowRotation) {
+                    [UIView animateWithDuration:SYAnimationDuration animations:^{
+                        self.arrowView.transform = CGAffineTransformRotate( self.arrowView.transform, -(0.000001 + M_PI));
+                    }];
+                }
             }
         }
     }else if (self.state == SYRefreshViewPulling){
@@ -459,17 +473,17 @@
     if (state == SYRefreshViewStateIdle) {
         self.headerNormalItem = item;
         if (self.state ==SYRefreshViewStateIdle) {
-            [self setTitleAttrText:item.title color:item.color];
+            [self setTitleAttrTextItem:item];
         }
     }else if (state == SYRefreshViewPulling){
         self.headerPullingItem = item;
         if (self.state ==SYRefreshViewPulling) {
-            [self setTitleAttrText:item.title color:item.color];
+            [self setTitleAttrTextItem:item];
         }
     }else if (state == SYRefreshViewRefreshing){
         self.headerRefreshingItem = item;
         if (self.state == SYRefreshViewRefreshing) {
-            [self setTitleAttrText:item.title color:item.color];
+            [self setTitleAttrTextItem:item];
         }
     }
 }
@@ -479,16 +493,31 @@
     if (state == self.lastState) return;
     _state = state;
     self.lastState = state;
-    UIColor *normalColor = [UIColor blackColor];
     if (state == SYRefreshViewStateIdle) {
-        [self setTitleAttrText:self.headerNormalItem.title?self.headerNormalItem.title:SYRefreshViewStateIdleTitle color:self.headerNormalItem.color?self.headerNormalItem.color:normalColor];
+        [self setTitleAttrTextItem:self.headerNormalItem];
     }else if (state == SYRefreshViewPulling){
-        [self setTitleAttrText:self.headerPullingItem.title?self.headerPullingItem.title:SYRefreshViewPullingTitle color:self.headerPullingItem.color?self.headerPullingItem.color:normalColor];
+        [self setTitleAttrTextItem:self.headerPullingItem];
     }else if (state == SYRefreshViewRefreshing){
-        [self setTitleAttrText:self.headerRefreshingItem.title?self.headerRefreshingItem.title:SYRefreshViewRefreshingTitle color:self.headerRefreshingItem.color?self.headerRefreshingItem.color:normalColor];
+        [self setTitleAttrTextItem:self.headerRefreshingItem];
     }
+}
+
+- (void)setTitleAttrTextItem:(SYTitleItem*)item
+{
+    UIColor *normalColor = [UIColor blackColor];
+    if (self.state == SYRefreshViewStateIdle) {
+        self.titleL.text = item.title?item.title:SYRefreshViewStateIdleTitle;
+    }else if (self.state == SYRefreshViewPulling){
+        self.titleL.text = item.title?item.title:SYRefreshViewPullingTitle;
+    }else if (self.state == SYRefreshViewRefreshing){
+        self.titleL.text = item.title?item.title:SYRefreshViewRefreshingTitle;
+    }
+    self.titleL.textColor = item.color?item.color:normalColor;
+    self.titleL.font = item.font?item.font:SYRefreshViewTitleFont;
+    self.arrowView.image = item.image?item.image:[self arrowNormalImage];
     [self setNeedsLayout];
 }
+
 
 - (void)beginRefreshing
 {

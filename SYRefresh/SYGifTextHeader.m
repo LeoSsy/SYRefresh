@@ -68,7 +68,6 @@
         self.titleL.height = SYVerticalOroTitleW;
         self.titleL.top = CGRectGetMaxY(self.gifItem.imageView.frame)+SYArrowRightMargin;
         self.titleL.centerX = self.gifItem.imageView.centerX;
-
     }
 }
 

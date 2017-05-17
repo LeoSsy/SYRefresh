@@ -31,9 +31,9 @@ static int count = 90;
         });
     }];
     
-    SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"右滑即可刷新" color:[UIColor redColor]];
-    SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放立即刷新" color:[UIColor greenColor]];
-    SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"刷新中..." color:[UIColor brownColor]];
+    SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"右滑即可刷新" color:[UIColor redColor] font:12 imageName:nil];
+    SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放立即刷新" color:[UIColor greenColor] font:12 imageName:nil];
+    SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"刷新中..." color:[UIColor brownColor] font:12 imageName:nil];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewStateIdle item:item1];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
@@ -46,9 +46,9 @@ static int count = 90;
         });
     }];
     
-    SYTitleItem *item4 = [SYTitleItem itemWithTitle:@"左滑即可刷新" color:[UIColor redColor]];
-    SYTitleItem *item5 = [SYTitleItem itemWithTitle:@"释放立即刷新" color:[UIColor greenColor]];
-    SYTitleItem *item6 = [SYTitleItem itemWithTitle:@"刷新中..." color:[UIColor brownColor]];
+    SYTitleItem *item4 = [SYTitleItem itemWithTitle:@"左滑即可刷新" color:[UIColor redColor] font:12 imageName:nil];
+    SYTitleItem *item5 = [SYTitleItem itemWithTitle:@"释放立即刷新" color:[UIColor greenColor] font:12 imageName:nil];
+    SYTitleItem *item6 = [SYTitleItem itemWithTitle:@"刷新中..." color:[UIColor brownColor] font:12 imageName:nil];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewStateIdle item:item4];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewPulling item:item5];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewRefreshing item:item6];

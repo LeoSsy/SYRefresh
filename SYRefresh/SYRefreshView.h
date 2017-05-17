@@ -35,10 +35,12 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 
 /** 保存每一种状态的相关样式对象*/
 @interface SYTitleItem : NSObject
-@property(nonatomic,copy)NSString *title;
-@property(nonatomic,copy)UIColor *color;
-+ (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color;
-+ (instancetype)itemWithTitle:(NSString*)title hexColor:(long)hexColor;
+@property(nonatomic,copy)NSString *title; //提示标题
+@property(nonatomic,copy)UIColor *color; //标题颜色
+@property(nonatomic,copy)UIFont *font; //标题字体
+@property(nonatomic,copy)UIImage *image;//刷新状态对应的图片
++ (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color font:(CGFloat)fontSize imageName:(NSString*)imageName;
++ (instancetype)itemWithTitle:(NSString*)title hexColor:(long)hexColor font:(CGFloat)fontSize imageName:(NSString*)imageName;
 @end
 
 @interface SYRefreshView : UIView
@@ -84,6 +86,8 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 @property(nonatomic ,assign,getter=isHiddenIndictorView) BOOL hiddenIndictorView;
 /**是否需要隐藏全部子控件*/
 @property(nonatomic ,assign,getter=isHideAllSubviews) BOOL hideAllSubviews;
+/**是否需要旋转箭头*/
+@property(nonatomic ,assign,getter=isArrowRotation) BOOL arrowRotation;
 /***设置头部刷新状态的回调*/
 @property(nonatomic ,copy) SYRefreshViewbeginRefreshingCompletionBlock beginBlock;
 /***设置尾部刷新状态的回调*/

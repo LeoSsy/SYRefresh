@@ -47,17 +47,17 @@
                    
                 });
             }];
-            SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"下拉回到商品详情" color:[UIColor redColor]];
-            SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放回到商品详情" color:[UIColor yellowColor]];
-            SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"更新中..." color:[UIColor brownColor]];
+            SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"下拉回到商品详情" color:[UIColor redColor] font:12 imageName:nil];
+            SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放回到商品详情" color:[UIColor yellowColor] font:12 imageName:nil];
+            SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"更新中..." color:[UIColor brownColor] font:12 imageName:nil];
             [_firstScrollView.sy_header setHeaderForState:SYRefreshViewStateIdle item:item1];
             [_firstScrollView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
             [_firstScrollView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
         }
 
-        SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"上拉查看图文详情" color:[UIColor redColor]];
-        SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放查看图文详情" color:[UIColor greenColor]];
-        SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"" color:[UIColor purpleColor]];
+        SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"上拉查看图文详情" color:[UIColor redColor] font:12 imageName:nil];
+        SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放查看图文详情" color:[UIColor greenColor] font:12 imageName:nil];
+        SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"" color:[UIColor purpleColor] font:12 imageName:nil];
 //        _firstScrollView.sy_footer.hiddenArrow = YES;
         [_firstScrollView.sy_footer setHeaderForState:SYRefreshViewStateIdle item:item1];
         [_firstScrollView.sy_footer setHeaderForState:SYRefreshViewPulling item:item2];
@@ -79,9 +79,9 @@
                 [self dismissSecondController];
             });
         }];
-        SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"下拉回到商品详情" color:[UIColor orangeColor]];
-        SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放回到商品详情" color:[UIColor yellowColor]];
-        SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"" color:[UIColor brownColor]];
+        SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"下拉回到商品详情" color:[UIColor orangeColor] font:12 imageName:nil];
+        SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放回到商品详情" color:[UIColor yellowColor] font:12 imageName:nil];
+        SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"" color:[UIColor brownColor] font:12 imageName:nil];
         [_secondScrollView.sy_header setHeaderForState:SYRefreshViewStateIdle item:item1];
         [_secondScrollView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
         [_secondScrollView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];

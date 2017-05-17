@@ -42,16 +42,16 @@ static NSString * const reuseIdentifier = @"Cell";
         });
     }];
     
-    SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"滑动刷新" color:[UIColor redColor]];
-    SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放刷新" color:[UIColor greenColor]];
-    SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"刷新中..." color:[UIColor brownColor]];
+    SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"滑动刷新" color:[UIColor redColor] font:12 imageName:nil];
+    SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放刷新" color:[UIColor greenColor] font:12 imageName:nil];
+    SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"刷新中..." color:[UIColor brownColor] font:12 imageName:nil];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewStateIdle item:item1];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
     
-    SYTitleItem *item4 = [SYTitleItem itemWithTitle:@"滑动加载" color:[UIColor redColor]];
-    SYTitleItem *item5 = [SYTitleItem itemWithTitle:@"释放加载" color:[UIColor greenColor]];
-    SYTitleItem *item6 = [SYTitleItem itemWithTitle:@"加载中..." color:[UIColor brownColor]];
+    SYTitleItem *item4 = [SYTitleItem itemWithTitle:@"滑动加载" color:[UIColor redColor] font:12 imageName:nil];
+    SYTitleItem *item5 = [SYTitleItem itemWithTitle:@"释放加载" color:[UIColor greenColor] font:12 imageName:nil];
+    SYTitleItem *item6 = [SYTitleItem itemWithTitle:@"加载中..." color:[UIColor brownColor] font:12 imageName:nil];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewStateIdle item:item4];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewPulling item:item5];
     [self.collectionView.sy_footer setHeaderForState:SYRefreshViewRefreshing item:item6];
