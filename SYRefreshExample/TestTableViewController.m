@@ -66,9 +66,9 @@
             });
         }];
         self.tableView.sy_header.arrowRotation = NO;
-        SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"下拉回到商品详情" color:[UIColor redColor] font:20 imageName:@"bear"];
-        SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放回到商品详情" color:[UIColor yellowColor] font:20 imageName:@"hippo"];
-        SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"更新中..." color:[UIColor brownColor] font:20 imageName:@""];
+        SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"下拉回到商品详情" color:[UIColor redColor] font:13 imageName:@"bear"];
+        SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放回到商品详情" color:[UIColor brownColor] font:13 imageName:@"hippo"];
+        SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"更新中..." color:[UIColor brownColor] font:13 imageName:@""];
         [self.tableView.sy_header setHeaderForState:SYRefreshViewStateIdle item:item1];
         [self.tableView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
         [self.tableView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
