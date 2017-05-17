@@ -51,7 +51,6 @@ static const char SYRefreshFooterKey = '\0';
     
     self.sy_header = nil;
     self.sy_footer = nil;
-    
 }
 
 @end

@@ -38,8 +38,25 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 @property(nonatomic,copy)NSString *title; //提示标题
 @property(nonatomic,copy)UIColor *color; //标题颜色
 @property(nonatomic,copy)UIFont *font; //标题字体
-@property(nonatomic,copy)UIImage *image;//刷新状态对应的图片
+@property(nonatomic,copy)UIImage *image;//刷新状态对应的图片 默认是箭头
+
+/**
+ 快速创建一个标题样式对象
+ @param title 标题
+ @param color 颜色
+ @param fontSize 字体大小
+ @param imageName 图片名 默认就是箭头图片 并且支持旋转 如果不希望旋转 可以设置SYRefreshView的属性arrowRotation为NO
+ @return SYTitleItem
+ */
 + (instancetype)itemWithTitle:(NSString*)title color:(UIColor*)color font:(CGFloat)fontSize imageName:(NSString*)imageName;
+/**
+ 快速创建一个标题样式对象
+ @param title 标题
+ @param hexColor 十六进制颜色
+ @param fontSize 字体大小
+ @param imageName 图片名 默认就是箭头图片 并且支持旋转 如果不希望旋转 可以设置SYRefreshView的属性arrowRotation为NO
+ @return SYTitleItem
+ */
 + (instancetype)itemWithTitle:(NSString*)title hexColor:(long)hexColor font:(CGFloat)fontSize imageName:(NSString*)imageName;
 @end
 
@@ -61,7 +78,7 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 + (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation width:(CGFloat)width completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
 
 /**
- *  置控件不同的状态对应的提示文字
+ *  设置控件不同的状态对应的提示文字
  *  @param state  刷新控件状态 对应 SYRefreshViewState
  *  @param item   SYTitleItem对象 保存每一种状态的相关样式
  */
