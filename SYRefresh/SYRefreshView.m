@@ -164,7 +164,6 @@
         }
         self.height = newSuperview.height;
         self.scrollview.alwaysBounceHorizontal = YES;
-
     }else{
         self.height = self.sy_height;
         self.left = 0;
@@ -446,6 +445,7 @@
     }else if (state == SYRefreshViewRefreshing){
         [self setTitleAttrTextItem:self.headerRefreshingItem];
     }
+    
 }
 
 - (void)setTitleAttrTextItem:(SYTitleItem*)item
@@ -632,6 +632,18 @@
 {
     [super layoutSubviews];
     
+    //去除隐式动画 collectionview默认会存在隐式动画
+    if ([self.scrollview isKindOfClass:[UICollectionView class]]) {
+        [UIView performWithoutAnimation:^{
+            [self layoutAllSubViews];
+        }];
+    }else{
+        [self layoutAllSubViews];
+    }
+}
+
+- (void)layoutAllSubViews
+{
     if ([self refreshOriIsLeftOrRight]) {
         
         if (self.orientation == SYRefreshViewOrientationLeft) {
@@ -680,8 +692,8 @@
         self.indicatorView.frame = self.arrowView.frame;
         self.indicatorView.centerY = self.centerY;
     }
-    
 }
+
 @end
 
 @implementation UIView(SY)

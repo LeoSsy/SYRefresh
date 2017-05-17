@@ -66,6 +66,9 @@
 		2A08C3771ECA903D0035DD5E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3761ECA903D0035DD5E /* TestTableViewController.m */; };
 		2A08C3781ECA903D0035DD5E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3761ECA903D0035DD5E /* TestTableViewController.m */; };
 		2A08C3791ECA903D0035DD5E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C3761ECA903D0035DD5E /* TestTableViewController.m */; };
+		2A2FB36D1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */; };
+		2A2FB36E1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */; };
+		2A2FB36F1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +138,8 @@
 		2A08C3751ECA903D0035DD5E /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
 		2A08C3761ECA903D0035DD5E /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		2A08C37A1ECA96210035DD5E /* SYRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYRefresh.h; sourceTree = "<group>"; };
+		2A2FB36B1ECC5656000137E3 /* VerticalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalCollectionViewController.h; sourceTree = "<group>"; };
+		2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +213,8 @@
 				2A08C3711EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m */,
 				2A08C3751ECA903D0035DD5E /* TestTableViewController.h */,
 				2A08C3761ECA903D0035DD5E /* TestTableViewController.m */,
+				2A2FB36B1ECC5656000137E3 /* VerticalCollectionViewController.h */,
+				2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */,
 				2A08C3031EC404A90035DD5E /* TestViewController.h */,
 				2A08C3041EC404A90035DD5E /* TestViewController.m */,
 				2A08C2B01EC404750035DD5E /* ViewController.h */,
@@ -410,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A2FB36D1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */,
 				2A08C30E1EC404A90035DD5E /* SecondViewController.m in Sources */,
 				2A08C3721EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
 				2A08C31A1EC404A90035DD5E /* TestViewController.m in Sources */,
@@ -444,6 +452,7 @@
 				2A08C30C1EC404A90035DD5E /* FistViewController.m in Sources */,
 				2A08C30F1EC404A90035DD5E /* SecondViewController.m in Sources */,
 				2A08C3731EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
+				2A2FB36E1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */,
 				2A08C31B1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C2C51EC404750035DD5E /* SYRefreshExampleTests.m in Sources */,
 				2A08C3781ECA903D0035DD5E /* TestTableViewController.m in Sources */,
@@ -466,6 +475,7 @@
 				2A08C30D1EC404A90035DD5E /* FistViewController.m in Sources */,
 				2A08C3101EC404A90035DD5E /* SecondViewController.m in Sources */,
 				2A08C3741EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
+				2A2FB36F1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */,
 				2A08C31C1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C2D01EC404750035DD5E /* SYRefreshExampleUITests.m in Sources */,
 				2A08C3791ECA903D0035DD5E /* TestTableViewController.m in Sources */,

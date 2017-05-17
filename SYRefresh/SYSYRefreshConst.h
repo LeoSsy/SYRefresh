@@ -17,12 +17,10 @@
 #define SYColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 static NSString *const SYKeyPathContentOffset = @"contentOffset";
-static NSString *const SYKeyPathContentInset = @"contentInset";
 static NSString *const SYKeyPathContentSize = @"contentSize";
-static NSString *const SYKeyPathPanState = @"state";
 
-static NSString *const SYRefreshViewStateIdleTitle = @"下拉加载最新数据";
-static NSString *const SYRefreshViewPullingTitle = @"释放回到商品详情";
+static NSString *const SYRefreshViewStateIdleTitle =  @"下拉加载最新数据";
+static NSString *const SYRefreshViewPullingTitle =    @"释放回到商品详情";
 static NSString *const SYRefreshViewRefreshingTitle = @"正在刷新中...";
 
 static const CGFloat SYHeaderHeight = 54.0; //头部控件默认高度
