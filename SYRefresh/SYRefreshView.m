@@ -111,7 +111,6 @@
     return view;
 }
 
-
 + (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation width:(CGFloat)width  completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock
 {
     SYRefreshView *view = [[SYRefreshView alloc] init];
@@ -233,61 +232,6 @@
         _sy_height = sy_height;
         [self setNeedsLayout];
     }
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    if ([self refreshOriIsLeftOrRight]) {
-        
-        if (self.orientation == SYRefreshViewOrientationLeft) {
-            
-            self.arrowView.width = self.arrowView.image.size.width;
-            self.arrowView.height = self.arrowView.image.size.height;
-            self.arrowView.left = SYArrowRightMargin;
-            self.arrowView.centerY = self.centerY;
-            
-            self.indicatorView.frame = self.arrowView.frame;
-            self.indicatorView.centerY = self.centerY;
-            
-            self.titleL.height = [self titleHeight];
-            self.titleL.left =  CGRectGetMaxX(self.arrowView.frame)+(self.arrowRightInset>0?self.arrowRightInset:SYArrowRightMargin);
-            self.titleL.top = (self.height-self.titleL.height)*0.5;
-            self.titleL.width = SYVerticalOroTitleW;
-            
-        }else{
-            
-            self.arrowView.width = self.arrowView.image.size.width;
-            self.arrowView.height = self.arrowView.image.size.height;
-            self.arrowView.left = SYArrowRightMargin;
-            self.arrowView.centerY = self.centerY;
-            
-            self.indicatorView.frame = self.arrowView.frame;
-            self.indicatorView.centerY = self.centerY;
-            
-            self.titleL.height = [self titleHeight];
-            self.titleL.left =  CGRectGetMaxX(self.arrowView.frame)+(self.arrowRightInset>0?self.arrowRightInset:SYArrowRightMargin);
-            self.titleL.top = (self.height-self.titleL.height)*0.5;
-            self.titleL.width = SYVerticalOroTitleW;
-        }
-    
-    }else{
-        
-        self.titleL.width = [self titleWidth];
-        self.titleL.top = 0;
-        self.titleL.left = (self.width-self.titleL.width)*0.5;
-        self.titleL.height = self.height;
-        
-        self.arrowView.height = self.arrowView.image.size.height;
-        self.arrowView.width = self.arrowView.image.size.width;
-        self.arrowView.left = CGRectGetMinX(self.titleL.frame)-self.arrowView.width-(self.arrowRightInset>0?self.arrowRightInset:SYArrowRightMargin);
-        self.arrowView.centerY = self.centerY;
-        
-        self.indicatorView.frame = self.arrowView.frame;
-        self.indicatorView.centerY = self.centerY;
-    }
-   
 }
 
 - (CGFloat)titleWidth
@@ -678,6 +622,60 @@
     }
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if ([self refreshOriIsLeftOrRight]) {
+        
+        if (self.orientation == SYRefreshViewOrientationLeft) {
+            
+            self.arrowView.width = self.arrowView.image.size.width;
+            self.arrowView.height = self.arrowView.image.size.height;
+            self.arrowView.left = SYArrowRightMargin;
+            self.arrowView.centerY = self.centerY;
+            
+            self.indicatorView.frame = self.arrowView.frame;
+            self.indicatorView.centerY = self.centerY;
+            
+            self.titleL.height = [self titleHeight];
+            self.titleL.left =  CGRectGetMaxX(self.arrowView.frame)+(self.arrowRightInset>0?self.arrowRightInset:SYArrowRightMargin);
+            self.titleL.top = (self.height-self.titleL.height)*0.5;
+            self.titleL.width = SYVerticalOroTitleW;
+            
+        }else{
+            
+            self.arrowView.width = self.arrowView.image.size.width;
+            self.arrowView.height = self.arrowView.image.size.height;
+            self.arrowView.left = SYArrowRightMargin;
+            self.arrowView.centerY = self.centerY;
+            
+            self.indicatorView.frame = self.arrowView.frame;
+            self.indicatorView.centerY = self.centerY;
+            
+            self.titleL.height = [self titleHeight];
+            self.titleL.left =  CGRectGetMaxX(self.arrowView.frame)+(self.arrowRightInset>0?self.arrowRightInset:SYArrowRightMargin);
+            self.titleL.top = (self.height-self.titleL.height)*0.5;
+            self.titleL.width = SYVerticalOroTitleW;
+        }
+        
+    }else{
+        
+        self.titleL.width = [self titleWidth];
+        self.titleL.top = 0;
+        self.titleL.left = (self.width-self.titleL.width)*0.5;
+        self.titleL.height = self.height;
+        
+        self.arrowView.height = self.arrowView.image.size.height;
+        self.arrowView.width = self.arrowView.image.size.width;
+        self.arrowView.left = CGRectGetMinX(self.titleL.frame)-self.arrowView.width-(self.arrowRightInset>0?self.arrowRightInset:SYArrowRightMargin);
+        self.arrowView.centerY = self.centerY;
+        
+        self.indicatorView.frame = self.arrowView.frame;
+        self.indicatorView.centerY = self.centerY;
+    }
+    
+}
 @end
 
 @implementation UIView(SY)
