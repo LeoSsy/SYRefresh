@@ -73,6 +73,7 @@ GIF图片加文字刷新控件使用方法：
     [self.tableView.sy_header beginRefreshing];
 
 传入对应状态的图片数组组成GIF图片使用方法：
+    
     SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:100 orientation:SYRefreshViewOrientationTop callBack:^{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView.sy_header endRefreshing];
@@ -98,12 +99,14 @@ GIF图片加文字刷新控件使用方法：
     [gifHeader setImages:refreshingImages forState:SYRefreshViewRefreshing];
     self.tableView.sy_header = gifHeader;
 
+
 没有更多数据的提示使用方法：
-self.tableView.sy_footer = [SYRefreshView refreshWithHeight:55 isFooter:YES completionBlock:^{
+
+   self.tableView.sy_footer = [SYRefreshView refreshWithHeight:55 isFooter:YES completionBlock:^{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     [self.tableView.sy_footer noMoreData];
     });
-}];
+  }];
 
 UICollectionView的使用方法同上，如果UICollectionView需要支持水平刷新功能，请设置布局的方向为水平方向即可！
  更多功能敬请期待！ 此控件会持续的更新和完善
