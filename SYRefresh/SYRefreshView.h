@@ -74,10 +74,10 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 /**
  *  创建支持水平垂直方向刷新控件
  *  @param  orientation 刷新控件的方向 
- *  @param width       刷新控件宽度
+ *  @param height       刷新控件高度
  *  @param completionBlock 开始刷新之后的回调
  */
-+ (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation width:(CGFloat)width completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
++ (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation height:(CGFloat)height completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
 
 /**
  *  设置控件不同的状态对应的提示文字

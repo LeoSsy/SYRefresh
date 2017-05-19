@@ -23,7 +23,7 @@ static int count = 90;
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    self.collectionView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationTop width:60 completionBlock:^{
+    self.collectionView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationTop height:60 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.sy_header endRefreshing];
             count = 90;
@@ -38,7 +38,7 @@ static int count = 90;
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
     [self.collectionView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
     
-    self.collectionView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationBottom width:80 completionBlock:^{
+    self.collectionView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationBottom height:80 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.sy_footer endRefreshing];
             count+=5;

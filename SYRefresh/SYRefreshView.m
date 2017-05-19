@@ -113,14 +113,14 @@
     return view;
 }
 
-+ (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation width:(CGFloat)width  completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock
++ (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation height:(CGFloat)height completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock
 {
     SYRefreshView *view = [[SYRefreshView alloc] init];
     BOOL isFooter = NO;
     if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
         isFooter = YES;
     }
-    view.sy_height = width;
+    view.sy_height = height;
     view.isFooter = isFooter;
     view.orientation = orientation;
     if (!view.isFooter) {
