@@ -17,7 +17,7 @@
 
 @implementation TestTableViewController
 
-
+int count = 20;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -59,7 +59,7 @@
 //    }];
 //    [self.tableView.sy_header beginRefreshing];
 
-    {
+//    {
 //        self.tableView.sy_header = [SYRefreshView refreshWithHeight:40 isFooter:NO completionBlock:^{
 //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //                [self.tableView.sy_header endRefreshing];
@@ -75,8 +75,11 @@
 //        [self.tableView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
         
         SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:100 orientation:SYRefreshViewOrientationTop callBack:^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [self.tableView.sy_footer noMoreData];
                 [self.tableView.sy_header endRefreshing];
+                count = 5;
+                [self.tableView reloadData];
 
             });
         }];
@@ -100,13 +103,45 @@
         [gifHeader setImages:refreshingImages forState:SYRefreshViewRefreshing];
         self.tableView.sy_header = gifHeader;
         
-    }
+        
+//        SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:100 orientation:SYRefreshViewOrientationTop callBack:^{
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                //                [self.tableView.sy_footer noMoreData];
+//                [self.tableView.sy_footer endRefreshing];
+//                
+//            });
+//        }];
+//        
+//        NSMutableArray *normailImages = [NSMutableArray array];
+//        for (int i = 1 ; i<=19; i++) {
+//            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_camera_frame%d",i]];
+//            [normailImages addObject:image];
+//        }
+//        NSMutableArray *pullingImages = [NSMutableArray array];
+//        UIImage *image = [UIImage imageNamed:@"refresh_camera_frame20"];
+//        [pullingImages addObject:image];
+//        
+//        NSMutableArray *refreshingImages = [NSMutableArray array];
+//        for (int i = 21 ; i<=45; i++) {
+//            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_camera_frame%d",i]];
+//            [refreshingImages addObject:image];
+//        }
+//        [gifHeader setImages:normailImages  forState:SYRefreshViewStateIdle];
+//        [gifHeader setImages:pullingImages  forState:SYRefreshViewPulling];
+//        [gifHeader setImages:refreshingImages forState:SYRefreshViewRefreshing];
+//        self.tableView.sy_footer = gifHeader;
+        
+//    }
    
-//    self.tableView.sy_footer = [SYRefreshView refreshWithHeight:55 isFooter:YES completionBlock:^{
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    self.tableView.sy_footer = [SYRefreshView refreshWithHeight:55 isFooter:YES completionBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            [self.tableView.sy_footer endRefreshing];
-//        });
-//    }];
+            count += 5;
+            [self.tableView reloadData];
+            [self.tableView.sy_footer noMoreData];
+            
+        });
+    }];
 //    SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"上拉查看图文详情" color:[UIColor redColor]];
 //    SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放查看图文详情" color:[UIColor greenColor]];
 //    SYTitleItem *item3 = [SYTitleItem itemWithTitle:@"加载中." color:[UIColor purpleColor]];
@@ -119,20 +154,9 @@
     
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 5;
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 45)];
-    view.backgroundColor = [UIColor redColor];
-    return view;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

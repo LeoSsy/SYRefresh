@@ -15,7 +15,9 @@ typedef NS_ENUM(NSInteger, SYRefreshViewState) {
     /** 松开就可以进行进行切换的状态 */
     SYRefreshViewPulling,
     /** 正在刷新的状态 */
-    SYRefreshViewRefreshing
+    SYRefreshViewRefreshing,
+    /** 没有更多数据的状态 */
+    SYRefreshViewNoMoreData
 };
 
 /**刷新控件的方向 可以为指定的方向添加刷新控件*/
@@ -71,7 +73,7 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 
 /**
  *  创建支持水平垂直方向刷新控件
- *  @param  orientation 刷新控件的方向 ps:如何你设置的是header 但是你的scrollview只支持垂直滚动 此时你设置方向为左右方向是没有效果的 反之也是一样
+ *  @param  orientation 刷新控件的方向 
  *  @param width       刷新控件宽度
  *  @param completionBlock 开始刷新之后的回调
  */
@@ -123,6 +125,8 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 - (void)dragingProgress:(CGFloat)progress;
 /**判断当前的控件方向是否是左右刷新 是返回yes 否返回no*/
 - (BOOL)refreshOriIsLeftOrRight;
+/**没有更多数据提示*/
+- (void)noMoreData;
 @end
 
 @interface UIView(SY)

@@ -22,6 +22,7 @@ static NSString *const SYKeyPathContentSize = @"contentSize";
 static NSString *const SYRefreshViewStateIdleTitle =  @"下拉加载最新数据";
 static NSString *const SYRefreshViewPullingTitle =    @"释放回到商品详情";
 static NSString *const SYRefreshViewRefreshingTitle = @"正在刷新中...";
+static NSString *const SYRefreshViewNoMoreDataTitle = @"没有更多数据了";
 
 static const CGFloat SYHeaderHeight = 54.0; //头部控件默认高度
 static const CGFloat SYFooterHeight = 44.0; //尾部控件默认高度

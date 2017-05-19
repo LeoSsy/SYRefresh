@@ -91,7 +91,7 @@
 /**
  *  创建刷新控件 这样创建出来的刷新控件后 需要设置对应状态的图片数组 参考方法：- (void)setImages:(NSArray *)images forState:(SYRefreshViewState)state;
  @param  height 刷新控件高度
- @param  orientation 刷新控件的方向 ps:如何你设置的是header 但是你的scrollview只支持垂直滚动 此时你设置方向为左右方向是没有效果的 反之也是一样
+ @param  orientation 刷新控件的方向
  @return SYGifHeader
  */
 + (instancetype)headerWithHeight:(CGFloat)height orientation:(SYRefreshViewOrientation)orientation  callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
@@ -99,7 +99,7 @@
 /**
  *  创建刷新控件
  @param  data 图片数据 直接加在本地的gif图片
- @param  orientation 刷新控件的方向 ps:如何你设置的是header 但是你的scrollview只支持垂直滚动 此时你设置方向为左右方向是没有效果的 反之也是一样
+ @param  orientation 刷新控件的方向 
  @param  isBig 是否是大图 如果是小图片的话 建议设置此参数为NO
  @param  height 如果是水平刷新就表示刷新控件宽度 垂直刷新就表示刷新控件的高度
  @return SYGifHeader

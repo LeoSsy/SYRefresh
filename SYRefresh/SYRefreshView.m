@@ -47,6 +47,8 @@
 @property(nonatomic ,strong) SYTitleItem *headerNormalItem;
 @property(nonatomic ,strong) SYTitleItem *headerPullingItem;
 @property(nonatomic ,strong) SYTitleItem *headerRefreshingItem;
+@property(nonatomic ,strong) SYTitleItem *headerNoMoreDataItem;
+
 @end
 
 @implementation SYRefreshView
@@ -297,6 +299,10 @@
         if (self.top != contentsize.height) {
             self.top = contentsize.height;
         }
+        //当内容不满一个屏幕的时候就隐藏底部的刷新控件
+        if (contentsize.height<self.scrollview.height) {
+            self.scrollview.sy_footer.alpha = 0.f;
+        }
     }
 }
 
@@ -433,6 +439,8 @@
         if (self.state == SYRefreshViewRefreshing) {
             [self setTitleAttrTextItem:item];
         }
+    }else if (state == SYRefreshViewNoMoreData){
+        self.headerNoMoreDataItem = item;
     }
 }
 
@@ -453,12 +461,12 @@
     }else if (state == SYRefreshViewRefreshing){
         [self setTitleAttrTextItem:self.headerRefreshingItem];
     }
-    
 }
 
 - (void)setTitleAttrTextItem:(SYTitleItem*)item
 {
     UIColor *normalColor = [UIColor blackColor];
+    
     if (self.state == SYRefreshViewStateIdle) {
         self.titleL.text = item.title?item.title:SYRefreshViewStateIdleTitle;
     }else if (self.state == SYRefreshViewPulling){
@@ -700,6 +708,28 @@
         self.indicatorView.frame = self.arrowView.frame;
         self.indicatorView.centerY = self.centerY;
     }
+}
+
+- (void)noMoreData
+{
+    self.arrowView.hidden = YES;
+    self.indicatorView.hidden = YES;
+    self.titleL.text = self.headerNoMoreDataItem.title? self.headerNoMoreDataItem.title:SYRefreshViewNoMoreDataTitle;
+    self.titleL.textColor = self.headerNoMoreDataItem.color? self.headerNoMoreDataItem.color:[UIColor blackColor];
+    
+    if ([self refreshOriIsLeftOrRight]) {
+        [UIView animateWithDuration:SYAnimationDuration animations:^{
+            self.scrollview.contentInset = UIEdgeInsetsMake(self.scrollview.contentInset.top, self.scrollview.contentInset.left, self.scrollview.contentInset.bottom, self.scrollview.contentInset.right+self.width);
+        }completion:^(BOOL finished) {
+        }];
+    }else{
+        [UIView animateWithDuration:SYAnimationDuration animations:^{
+            self.scrollview.contentInset = UIEdgeInsetsMake(self.scrollview.contentInset.top, self.scrollview.contentInset.left, self.scrollview.contentInset.bottom+self.height, self.scrollview.contentInset.right);
+        }completion:^(BOOL finished) {
+
+        }];
+    }
+    [self setNeedsLayout];
 }
 
 @end
