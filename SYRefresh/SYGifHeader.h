@@ -8,7 +8,7 @@
 
 #import "SYRefreshView.h"
 
-@class SYGifAnimatedImageView;
+@class SYGifAnimatedImageView,SYGifItem,SYAnimatedImage;
 
 @interface SYGifItem : NSObject
 /**图片数据*/
@@ -30,6 +30,8 @@
 
 /**播放图片方法*/
 - (void)updateState:(BOOL)isRefreshing;
+- (void)updateProgress:(CGFloat)progress;
+
 /**以下属性为辅助属性 用在解析图片时保存图片信息*/
 @property(nonatomic,strong)UIImage *image;
 @property(nonatomic,assign)CGFloat  duration;
@@ -77,27 +79,35 @@
 @end
 
 @interface SYGifHeader : SYRefreshView
-
+/**gif图片显示view*/
+@property(nonatomic,strong)UIImageView *gifImageView;
 /**图像信息*/
 @property(nonatomic,strong)SYGifItem *gifItem;
+/**是否是加在的本地的gif图片*/
+- (BOOL)isLoadedGif;
+/**获取图片的尺寸*/
+- (CGSize)imageSize;
 
 /**
- 初始化方法
- @param  data 图片数据
- @param  isBig 是否是大图 如果是小图片的话 建议设置此参数为NO
+ *  创建刷新控件 这样创建出来的刷新控件后 需要设置对应状态的图片数组 参考方法：- (void)setImages:(NSArray *)images forState:(SYRefreshViewState)state;
  @param  height 刷新控件高度
+ @param  orientation 刷新控件的方向 ps:如何你设置的是header 但是你的scrollview只支持垂直滚动 此时你设置方向为左右方向是没有效果的 反之也是一样
  @return SYGifHeader
  */
-+ (instancetype)headerWithData:(NSData*)data isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
++ (instancetype)headerWithHeight:(CGFloat)height orientation:(SYRefreshViewOrientation)orientation  callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
 
 /**
- 初始化方法
- @param  data 图片数据
- @param  orientation 刷新控件的方向
+ *  创建刷新控件
+ @param  data 图片数据 直接加在本地的gif图片
+ @param  orientation 刷新控件的方向 ps:如何你设置的是header 但是你的scrollview只支持垂直滚动 此时你设置方向为左右方向是没有效果的 反之也是一样
  @param  isBig 是否是大图 如果是小图片的话 建议设置此参数为NO
- @param  width 刷新控件宽度
+ @param  height 如果是水平刷新就表示刷新控件宽度 垂直刷新就表示刷新控件的高度
  @return SYGifHeader
  */
-+ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig width:(CGFloat)width callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
++ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
+
+/** 设置对应刷新状态下的动画图片数组和动画持续时间*/
+- (void)setImages:(NSArray *)images duration:(double)duration forState:(SYRefreshViewState)state;
+- (void)setImages:(NSArray *)images forState:(SYRefreshViewState)state;
 
 @end

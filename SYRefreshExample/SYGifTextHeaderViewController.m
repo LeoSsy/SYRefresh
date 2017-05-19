@@ -20,13 +20,13 @@
     
     NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-small.gif" ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:url];
-    self.tableView.sy_header = [SYGifTextHeader textGifheaderWithData:data isBig:NO height:100  callBack:^{
+
+    self.tableView.sy_header = [SYGifTextHeader headerWithData:data orientation:SYRefreshViewOrientationTop isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView.sy_header endRefreshing];
             NSLog(@"刷新结束");
         });
     }];
-    [self.tableView.sy_header beginRefreshing];
     
     SYTitleItem *item1 = [SYTitleItem itemWithTitle:@"下拉回到商品详情" color:[UIColor redColor] font:12 imageName:nil];
     SYTitleItem *item2 = [SYTitleItem itemWithTitle:@"释放回到商品详情" color:[UIColor yellowColor] font:12 imageName:nil];
@@ -34,6 +34,10 @@
     [self.tableView.sy_header setHeaderForState:SYRefreshViewStateIdle item:item1];
     [self.tableView.sy_header setHeaderForState:SYRefreshViewPulling item:item2];
     [self.tableView.sy_header setHeaderForState:SYRefreshViewRefreshing item:item3];
+    
+    [self.tableView.sy_header beginRefreshing];
+    
+   
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

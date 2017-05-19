@@ -300,6 +300,8 @@
     }
 }
 
+- (void)dragingProgress:(CGFloat)progress{}
+
 #pragma mark 处理上下刷新控件的位置
 - (void)refreshOffsetYchanged
 {
@@ -313,6 +315,7 @@
             CGFloat pullingOffsetY = justOffsetY - self.height;
             CGFloat dragingProgress = (justOffsetY - offsetY) / self.height;
             self.alpha = dragingProgress;
+            [self dragingProgress:dragingProgress];
             if (self.state == SYRefreshViewStateIdle&&offsetY<pullingOffsetY) { //负数 往下拉
                 self.state = SYRefreshViewPulling;
                 if (self.isArrowRotation) {
@@ -431,6 +434,11 @@
             [self setTitleAttrTextItem:item];
         }
     }
+}
+
+- (SYRefreshViewState)getState
+{
+    return self.state;
 }
 
 - (void)setState:(SYRefreshViewState)state

@@ -26,7 +26,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-small.gif" ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:url];
     
-    self.collectionView.sy_header = [SYGifTextHeader textGifheaderWithData:data orientation:SYRefreshViewOrientationLeft isBig:NO width:100 callBack:^{
+    self.collectionView.sy_header = [SYGifTextHeader headerWithData:data orientation:SYRefreshViewOrientationLeft isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.sy_header endRefreshing];
             NSLog(@"刷新结束");
@@ -35,7 +35,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView.sy_header beginRefreshing];
     
     
-    self.collectionView.sy_footer = [SYGifTextHeader textGifheaderWithData:data orientation:SYRefreshViewOrientationRight isBig:NO width:100 callBack:^{
+    self.collectionView.sy_footer = [SYGifTextHeader headerWithData:data orientation:SYRefreshViewOrientationRight isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.sy_footer endRefreshing];
             NSLog(@"刷新结束");

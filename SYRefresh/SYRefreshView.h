@@ -70,8 +70,8 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 + (SYRefreshView*)refreshWithHeight:(CGFloat)height isFooter:(BOOL)isFooter completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
 
 /**
- *  创建刷新控件
- *  @param orientation 为指定的方向添加刷新控件
+ *  创建支持水平垂直方向刷新控件
+ *  @param  orientation 刷新控件的方向 ps:如何你设置的是header 但是你的scrollview只支持垂直滚动 此时你设置方向为左右方向是没有效果的 反之也是一样
  *  @param width       刷新控件宽度
  *  @param completionBlock 开始刷新之后的回调
  */
@@ -83,6 +83,10 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
  *  @param item   SYTitleItem对象 保存每一种状态的相关样式
  */
 - (void)setHeaderForState:(SYRefreshViewState)state item:(SYTitleItem*)item;
+/***获取控件的状态*/
+- (SYRefreshViewState)getState;
+/***设置控件的状态*/
+- (void)setState:(SYRefreshViewState)state;
 /**开始刷新*/
 - (void)beginRefreshing;
 /**结束刷新*/
@@ -111,8 +115,12 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 @property(nonatomic ,copy) SYRefreshViewbeginRefreshingCompletionBlock endBlock;
 /**初始化方法*/
 - (void)prepare;
+/**布局所有子控件*/
+- (void)layoutAllSubViews;
 /**监听偏移量*/
 - (void)scrollViewDidScrollChange;
+/**拖拽的比例*/
+- (void)dragingProgress:(CGFloat)progress;
 /**判断当前的控件方向是否是左右刷新 是返回yes 否返回no*/
 - (BOOL)refreshOriIsLeftOrRight;
 @end

@@ -11,6 +11,7 @@
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
+
 @implementation SYAnimatedImage
 
 - (NSTimeInterval)frameDurationForImage:(NSInteger)index{return 0.f;}
@@ -180,37 +181,82 @@
     isRefreshing?[self.imageView startAnimating]:[self.imageView stopAnimating];
 }
 
+- (void)updateProgress:(CGFloat)progress
+{
+    if (self.imageView.animatedImage.frameCount<=0) return;
+    if (progress>=1) {
+        [self.imageView startAnimating];
+    }else{
+        [self.imageView stopAnimating];
+        self.imageView.index = (self.imageView.animatedImage.frameCount-1)*progress;
+    }
+}
+
+
+@end
+
+@interface SYGifHeader()
+@property(nonatomic,strong)NSMutableDictionary *images; //保存对应状态的图片
+@property(nonatomic,strong)NSMutableDictionary *durations; //保存对应状态的动画时间
 @end
 
 @implementation SYGifHeader
 
-+ (instancetype)headerWithData:(NSData*)data isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock
+- (UIImageView *)gifImageView
 {
-    SYGifHeader *header = [[SYGifHeader alloc] init];
-    header.isFooter = NO;
-    header.sy_height = height;
-    header.hideAllSubviews = YES;
-    header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:height];
-    header.beginBlock = finishRefreshBlock;
-    return header;
+    if (!_gifImageView) {
+        _gifImageView = [[UIImageView alloc] init];
+        [self addSubview:_gifImageView];
+    }
+    return _gifImageView;
 }
 
-+ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig width:(CGFloat)width callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock
+- (NSMutableDictionary *)images
 {
-    SYGifHeader *header = [[SYGifHeader alloc] init];
+    if (!_images) {
+        _images = [NSMutableDictionary dictionary];
+    }
+    return _images;
+}
+
+- (NSMutableDictionary *)durations
+{
+    if (!_durations) {
+        _durations = [NSMutableDictionary dictionary];
+    }
+    return _durations;
+}
+
++ (instancetype)headerWithHeight:(CGFloat)height orientation:(SYRefreshViewOrientation)orientation  callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
+{
+    SYGifHeader *header = [[self alloc] init];
     header.orientation = orientation;
     BOOL isFooter = NO;
     if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
         isFooter = YES;
     }
-    header.sy_height = width;
     header.isFooter = isFooter;
+    header.sy_height =  height;
     header.hideAllSubviews = YES;
-    header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:width];
     header.beginBlock = finishRefreshBlock;
     return header;
 }
 
++ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
+{
+    SYGifHeader *header = [[self alloc] init];
+    header.orientation = orientation;
+    BOOL isFooter = NO;
+    if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
+        isFooter = YES;
+    }
+    header.sy_height = height;
+    header.isFooter = isFooter;
+    header.hideAllSubviews = YES;
+    header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:height];
+    header.beginBlock = finishRefreshBlock;
+    return header;
+}
 
 - (void)beginRefreshing
 {
@@ -234,10 +280,94 @@
     }
 }
 
+- (void)setImages:(NSArray *)images duration:(double)duration forState:(SYRefreshViewState)state
+{
+    if (images==nil) return;
+    self.images[@(state)] = images;
+    self.durations[@(state)] = @(duration);
+    self.gifImageView.top = 0;
+    self.gifImageView.size = [self imageSize];
+    
+}
+
+- (void)setImages:(NSArray *)images forState:(SYRefreshViewState)state
+{
+    [self setImages:images duration:images.count*0.1 forState:state];
+}
+
+- (void)dragingProgress:(CGFloat)progress
+{
+    [super dragingProgress:progress];
+    
+    if (self.images.count>0) {
+        self.gifImageView.hidden = NO;
+        NSArray *images = self.images[@(SYRefreshViewStateIdle)];
+        if ([self getState] != SYRefreshViewStateIdle || images.count == 0) return;
+        [self.gifImageView stopAnimating];
+        NSUInteger index =  images.count * progress;
+        if (index >= images.count) index = images.count - 1;
+        self.gifImageView.image = images[index];
+    }else{
+        [self.gifItem updateProgress:progress];
+    }
+    
+}
+
+- (void)setState:(SYRefreshViewState)state
+{
+    [super setState:state];
+    if (![self isLoadedGif]) {
+        [self.gifImageView stopAnimating];
+        if (state==SYRefreshViewPulling || state == SYRefreshViewRefreshing) {
+            NSArray *images = self.images[@(state)];
+            double duration = [self.durations[@(state)] doubleValue];
+            if (images.count==1) {
+                self.gifImageView.image = [images firstObject];
+            }else{
+                [self.gifImageView setAnimationImages:images];
+                [self.gifImageView setAnimationDuration:duration];
+                [self.gifImageView setAnimationRepeatCount:MAXFLOAT];
+                [self.gifImageView startAnimating];
+            }
+        }else if (state == SYRefreshViewStateIdle){
+            self.gifImageView.hidden = YES;
+        }
+    }
+}
+
+- (BOOL)isLoadedGif
+{
+    return self.images.count>0?NO:YES;
+}
+
+- (CGSize)imageSize
+{
+    if (self.images.count) {
+        UIImage *image = [self.images[@(SYRefreshViewStateIdle)] firstObject];
+        return image.size;
+    }else{
+        return self.gifItem.imageView.image.size;
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.gifItem.imageView.frame= self.bounds;
+    
+    if (self.images.count>0) {
+        self.top = - [self imageSize].height;
+        self.height = [self imageSize].height;
+        self.gifImageView.centerX = self.centerX;
+        self.gifImageView.centerY = self.centerY;
+    }else{
+        self.gifItem.imageView.frame = self.bounds;
+    }
+}
+
+- (void)removeFromSuperview
+{
+    [super removeFromSuperview];
+    self.gifItem = nil;
 }
 
 @end

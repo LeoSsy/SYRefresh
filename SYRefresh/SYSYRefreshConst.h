@@ -29,5 +29,10 @@ static const CGFloat SYAnimationDuration = 0.25;//动画时间
 static const CGFloat SYArrowRightMargin = 8;//箭头与标题之间的间距
 static const CGFloat SYVerticalOroTitleW = SYRefreshViewTitleFontSize;//左右刷新状态下 标题的宽度 最好和字体一样的大小
 static const CGFloat SYNavHeight = 64;//导航栏的高度
+//去除collectionview的隐式动画
+#define PerformWithoutAnimation(code)\
+[UIView performWithoutAnimation:^{\
+code\
+}];
 
 #endif /* SYConst_h */
