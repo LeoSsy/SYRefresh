@@ -152,20 +152,20 @@ int count = 20;
     self.tableView.sectionHeaderHeight = 45;
     self.tableView.sectionFooterHeight = 0;
     
-    self.tableView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationTop height:50 completionBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView.sy_header endRefreshing];
-            
-        });
-    }];
+//    self.tableView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationTop height:50 completionBlock:^{
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.tableView.sy_header endRefreshing];
+//            
+//        });
+//    }];
     
-    self.tableView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationBottom height:50 completionBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView.sy_header endRefreshing];
-            
-        });
-    }];
-    
+//    self.tableView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationBottom height:50 completionBlock:^{
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.tableView.sy_header endRefreshing];
+//            
+//        });
+//    }];
+//    
 }
 
 

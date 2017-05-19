@@ -310,7 +310,6 @@
     }else{
         [self.gifItem updateProgress:progress];
     }
-    
 }
 
 - (void)setState:(SYRefreshViewState)state
