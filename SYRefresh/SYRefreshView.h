@@ -127,6 +127,10 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 - (BOOL)refreshOriIsLeftOrRight;
 /**没有更多数据提示*/
 - (void)noMoreData;
+/**开启开启尾部刷新控件自动刷新 progress为可以设置用户大概拖拽到屏幕的多少比例的时候开始自动刷新 取值为：0-1之间 包括1*/
+- (void)autoRefreshProgress:(CGFloat)progress;
+/**开启尾部刷新控件自动刷新 调用这个方法 默认值为0.8*/
+- (void)autoRefresh;
 @end
 
 @interface UIView(SY)

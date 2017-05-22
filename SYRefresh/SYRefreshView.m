@@ -43,6 +43,8 @@
 @property(nonatomic ,assign) SYRefreshViewState state;
 /***记录上一次控件的状态*/
 @property(nonatomic ,assign) SYRefreshViewState lastState;
+/***自动刷新的拖拽比例*/
+@property(nonatomic ,assign) CGFloat autoRefreshProgress;
 /***记录控件不同的状态的样式*/
 @property(nonatomic ,strong) SYTitleItem *headerNormalItem;
 @property(nonatomic ,strong) SYTitleItem *headerPullingItem;
@@ -52,6 +54,21 @@
 @end
 
 @implementation SYRefreshView
+
+- (void)autoRefreshProgress:(CGFloat)progress
+{
+    if (progress>1.0) {
+        progress = 1;
+    }else if (progress<0){
+        progress = 0;
+    }
+    _autoRefreshProgress = progress;
+}
+
+- (void)autoRefresh
+{
+    _autoRefreshProgress = autoRefreshProgress;
+}
 
 - (UILabel *)titleL
 {
@@ -342,6 +359,11 @@
             if (contentS<self.scrollview.height) { //内容不足一个屏幕 就不显示尾部的刷新
                 self.scrollview.sy_footer.alpha = 0.f;
                 return;
+            }else if (self.autoRefreshProgress>0) {
+                if (offsetY>=contentS*self.autoRefreshProgress) {
+                    [self beginRefreshing];
+                    return;
+                }
             }
             CGFloat pullingOffsetX = contentS - self.scrollview.height+self.height;
             if (self.state == SYRefreshViewStateIdle&&offsetY>pullingOffsetX) { //正数 往上拉

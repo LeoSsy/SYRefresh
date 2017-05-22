@@ -69,6 +69,9 @@
 		2A2FB36D1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */; };
 		2A2FB36E1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */; };
 		2A2FB36F1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */; };
+		2ACE291E1ED2E2C90067CA39 /* SYSYRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE291D1ED2E2C90067CA39 /* SYSYRefreshConst.m */; };
+		2ACE291F1ED2E2C90067CA39 /* SYSYRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE291D1ED2E2C90067CA39 /* SYSYRefreshConst.m */; };
+		2ACE29201ED2E2C90067CA39 /* SYSYRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE291D1ED2E2C90067CA39 /* SYSYRefreshConst.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +143,7 @@
 		2A08C37A1ECA96210035DD5E /* SYRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYRefresh.h; sourceTree = "<group>"; };
 		2A2FB36B1ECC5656000137E3 /* VerticalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalCollectionViewController.h; sourceTree = "<group>"; };
 		2A2FB36C1ECC5656000137E3 /* VerticalCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalCollectionViewController.m; sourceTree = "<group>"; };
+		2ACE291D1ED2E2C90067CA39 /* SYSYRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSYRefreshConst.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +269,7 @@
 				2A08C2E31EC404880035DD5E /* SYRefreshView.h */,
 				2A08C2E41EC404880035DD5E /* SYRefreshView.m */,
 				2A08C2E51EC404880035DD5E /* SYSYRefreshConst.h */,
+				2ACE291D1ED2E2C90067CA39 /* SYSYRefreshConst.m */,
 				2A08C37A1ECA96210035DD5E /* SYRefresh.h */,
 				2A08C2E61EC404880035DD5E /* UIScrollView+SYRefresh.h */,
 				2A08C2E71EC404880035DD5E /* UIScrollView+SYRefresh.m */,
@@ -423,6 +428,7 @@
 				2A08C31A1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C3111EC404A90035DD5E /* SYGifTextHeaderViewController.m in Sources */,
 				2A08C3771ECA903D0035DD5E /* TestTableViewController.m in Sources */,
+				2ACE291E1ED2E2C90067CA39 /* SYSYRefreshConst.m in Sources */,
 				2A08C2B21EC404750035DD5E /* ViewController.m in Sources */,
 				2A08C3681EC941630035DD5E /* TestCollectionViewController.m in Sources */,
 				2A08C36D1EC98C810035DD5E /* GifCollectionViewController.m in Sources */,
@@ -450,6 +456,7 @@
 				2A08C36E1EC98C810035DD5E /* GifCollectionViewController.m in Sources */,
 				2A08C2F51EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C30C1EC404A90035DD5E /* FistViewController.m in Sources */,
+				2ACE291F1ED2E2C90067CA39 /* SYSYRefreshConst.m in Sources */,
 				2A08C30F1EC404A90035DD5E /* SecondViewController.m in Sources */,
 				2A08C3731EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
 				2A2FB36E1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */,
@@ -473,6 +480,7 @@
 				2A08C36F1EC98C810035DD5E /* GifCollectionViewController.m in Sources */,
 				2A08C2F61EC404880035DD5E /* UIScrollView+SYRefresh.m in Sources */,
 				2A08C30D1EC404A90035DD5E /* FistViewController.m in Sources */,
+				2ACE29201ED2E2C90067CA39 /* SYSYRefreshConst.m in Sources */,
 				2A08C3101EC404A90035DD5E /* SecondViewController.m in Sources */,
 				2A08C3741EC99E800035DD5E /* GIFTextHeaderCollectionViewController.m in Sources */,
 				2A2FB36F1ECC5656000137E3 /* VerticalCollectionViewController.m in Sources */,

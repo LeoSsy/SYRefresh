@@ -16,20 +16,22 @@
 // rgb颜色转换（16进制->10进制）
 #define SYColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-static NSString *const SYKeyPathContentOffset = @"contentOffset";
-static NSString *const SYKeyPathContentSize = @"contentSize";
+UIKIT_EXTERN NSString *const SYKeyPathContentOffset;
+UIKIT_EXTERN NSString *const SYKeyPathContentSize;
 
-static NSString *const SYRefreshViewStateIdleTitle =  @"下拉加载最新数据";
-static NSString *const SYRefreshViewPullingTitle =    @"释放回到商品详情";
-static NSString *const SYRefreshViewRefreshingTitle = @"正在刷新中...";
-static NSString *const SYRefreshViewNoMoreDataTitle = @"没有更多数据了";
+UIKIT_EXTERN NSString *const SYRefreshViewStateIdleTitle;
+UIKIT_EXTERN NSString *const SYRefreshViewPullingTitle;
+UIKIT_EXTERN NSString *const SYRefreshViewRefreshingTitle;
+UIKIT_EXTERN NSString *const SYRefreshViewNoMoreDataTitle;
 
-static const CGFloat SYHeaderHeight = 54.0; //头部控件默认高度
-static const CGFloat SYFooterHeight = 44.0; //尾部控件默认高度
-static const CGFloat SYAnimationDuration = 0.25;//动画时间
-static const CGFloat SYArrowRightMargin = 8;//箭头与标题之间的间距
-static const CGFloat SYVerticalOroTitleW = SYRefreshViewTitleFontSize;//左右刷新状态下 标题的宽度 最好和字体一样的大小
-static const CGFloat SYNavHeight = 64;//导航栏的高度
+UIKIT_EXTERN const CGFloat SYHeaderHeight; //头部控件默认高度
+UIKIT_EXTERN const CGFloat SYFooterHeight; //尾部控件默认高度
+UIKIT_EXTERN const CGFloat SYAnimationDuration;//动画时间
+UIKIT_EXTERN const CGFloat SYArrowRightMargin;//箭头与标题之间的间距
+UIKIT_EXTERN const CGFloat SYVerticalOroTitleW;//左右刷新状态下 标题的宽度 最好和字体一样的大小
+UIKIT_EXTERN const CGFloat SYNavHeight;//导航栏的高度
+UIKIT_EXTERN const CGFloat autoRefreshProgress;//自动刷新的拖拽比例
+
 //去除collectionview的隐式动画
 #define PerformWithoutAnimation(code)\
 [UIView performWithoutAnimation:^{\
