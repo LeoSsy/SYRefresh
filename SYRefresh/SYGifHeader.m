@@ -354,10 +354,10 @@
     [super layoutSubviews];
     
     if (self.images.count>0) {
-        self.top = - [self imageSize].height;
-        self.height = [self imageSize].height;
+        CGFloat imgH = [self imageSize].height;
+        self.top = - self.height;
         self.gifImageView.centerX = self.centerX;
-        self.gifImageView.centerY = self.centerY;
+        self.gifImageView.top = self.height - imgH;
     }else{
         self.gifItem.imageView.frame = self.bounds;
     }
