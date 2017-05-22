@@ -87,6 +87,8 @@
 - (BOOL)isLoadedGif;
 /**获取图片的尺寸*/
 - (CGSize)imageSize;
+/**动画图片距离底部的间距*/
+@property(nonatomic,assign)CGFloat animtaionImageBottomMargin;
 
 /**
  *  创建刷新控件 这样创建出来的刷新控件后 需要设置对应状态的图片数组 参考方法：- (void)setImages:(NSArray *)images forState:(SYRefreshViewState)state;

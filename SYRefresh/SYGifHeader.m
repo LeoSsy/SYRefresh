@@ -357,7 +357,7 @@
         CGFloat imgH = [self imageSize].height;
         self.top = - self.height;
         self.gifImageView.centerX = self.centerX;
-        self.gifImageView.top = self.height - imgH;
+        self.gifImageView.top = self.height - imgH-(self.animtaionImageBottomMargin?_animtaionImageBottomMargin:0);
     }else{
         self.gifItem.imageView.frame = self.bounds;
     }
