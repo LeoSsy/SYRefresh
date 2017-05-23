@@ -361,7 +361,6 @@
                 self.scrollview.sy_footer.alpha = 0.f;
                 return;
             }else if (offsetY>=(contentS-self.scrollview.height-self.scrollview.contentInset.bottom-self.height)*self.autoRefreshProgress) {
-                NSLog(@"进入自动刷新");
                 [self beginRefreshing];
                     return;
             }
