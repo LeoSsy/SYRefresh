@@ -360,8 +360,9 @@
             if (contentS<self.scrollview.height) { //内容不足一个屏幕 就不显示尾部的刷新
                 self.scrollview.sy_footer.alpha = 0.f;
                 return;
-            }else if (offsetY>=(contentS-self.scrollview.height-self.scrollview.contentInset.bottom-self.height)) {
-                    [self beginRefreshing];
+            }else if (offsetY>=(contentS-self.scrollview.height-self.scrollview.contentInset.bottom-self.height)*self.autoRefreshProgress) {
+                NSLog(@"进入自动刷新");
+                [self beginRefreshing];
                     return;
             }
             CGFloat pullingOffsetX = contentS - self.scrollview.height+self.height;
