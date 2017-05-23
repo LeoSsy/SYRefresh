@@ -355,15 +355,14 @@
                 }
             }
         }else{
+
             CGFloat contentS = self.scrollview.contentSize.height;
             if (contentS<self.scrollview.height) { //内容不足一个屏幕 就不显示尾部的刷新
                 self.scrollview.sy_footer.alpha = 0.f;
                 return;
-            }else if (self.autoRefreshProgress>0) {
-                if (offsetY>=contentS*self.autoRefreshProgress) {
+            }else if (offsetY>=(contentS-self.scrollview.height-self.scrollview.contentInset.bottom-self.height)) {
                     [self beginRefreshing];
                     return;
-                }
             }
             CGFloat pullingOffsetX = contentS - self.scrollview.height+self.height;
             if (self.state == SYRefreshViewStateIdle&&offsetY>pullingOffsetX) { //正数 往上拉
