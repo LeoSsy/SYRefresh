@@ -24,6 +24,8 @@ static NSString * const reuseIdentifier = @"Cell";
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    __weak typeof(self)weakSelf = self;
+
     self.collectionView.backgroundColor = [UIColor colorWithRed:41/255.0 green:68/255.0 blue:119/255.0 alpha:1.0];
     
     // Register cell classes
@@ -32,7 +34,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSData *data = [NSData dataWithContentsOfFile:url];
     self.collectionView.sy_header = [SYGifHeader headerWithData:data orientation:SYRefreshViewOrientationLeft isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.sy_header endRefreshing];
+            [weakSelf.collectionView.sy_header endRefreshing];
             NSLog(@"刷新结束");
         });
     }];
@@ -40,7 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.sy_footer = [SYGifHeader headerWithData:data orientation:SYRefreshViewOrientationRight isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.sy_footer endRefreshing];
+            [weakSelf.collectionView.sy_footer endRefreshing];
             NSLog(@"刷新结束");
         });
     }];

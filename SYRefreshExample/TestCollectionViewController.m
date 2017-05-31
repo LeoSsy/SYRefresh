@@ -21,13 +21,15 @@ static int count = 90;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    __weak typeof(self)weakSelf = self;
+
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.collectionView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationLeft height:60 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.sy_header endRefreshing];
+            [weakSelf.collectionView.sy_header endRefreshing];
             count = 10;
-            [self.collectionView reloadData];
+            [weakSelf.collectionView reloadData];
         });
     }];
     
@@ -40,9 +42,9 @@ static int count = 90;
     
     self.collectionView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationRight height:80 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.sy_footer endRefreshing];
+            [weakSelf.collectionView.sy_footer endRefreshing];
             count+=5;
-            [self.collectionView reloadData];
+            [weakSelf.collectionView reloadData];
         });
     }];
     

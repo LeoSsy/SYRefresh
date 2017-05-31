@@ -20,13 +20,15 @@ static int count = 90;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    __weak typeof(self)weakSelf = self;
+
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.collectionView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationTop height:60 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.sy_header endRefreshing];
+            [weakSelf.collectionView.sy_header endRefreshing];
             count = 90;
-            [self.collectionView reloadData];
+            [weakSelf.collectionView reloadData];
         });
     }];
     
@@ -39,12 +41,12 @@ static int count = 90;
     
     self.collectionView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationBottom height:80 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.sy_footer endRefreshing];
+            [weakSelf.collectionView.sy_footer endRefreshing];
             count+=15;
-            [self.collectionView reloadData];
+            [weakSelf.collectionView reloadData];
         });
     }];
-    [self.collectionView.sy_footer autoRefresh];
+//    [self.collectionView.sy_footer autoRefresh];
     
     SYTitleItem *item4 = [SYTitleItem itemWithTitle:@"左滑即可刷新" color:[UIColor redColor] font:12 imageName:nil];
     SYTitleItem *item5 = [SYTitleItem itemWithTitle:@"释放立即刷新" color:[UIColor greenColor] font:12 imageName:nil];

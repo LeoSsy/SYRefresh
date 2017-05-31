@@ -24,13 +24,15 @@ int count = 20;
 //    NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-big.gif" ofType:nil];
 //    NSData *data = [NSData dataWithContentsOfFile:url];
 
-        
+    
+    __weak typeof(self)weakSelf = self;
+
         SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:100 orientation:SYRefreshViewOrientationTop callBack:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //                [self.tableView.sy_footer noMoreData];
-                [self.tableView.sy_header endRefreshing];
+                [weakSelf.tableView.sy_header endRefreshing];
                 count = 25;
-                [self.tableView reloadData];
+                [weakSelf.tableView reloadData];
 
             });
         }];
@@ -57,10 +59,9 @@ int count = 20;
    
     self.tableView.sy_footer = [SYRefreshView refreshWithHeight:55 isFooter:YES completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView.sy_footer endRefreshing];
+            [weakSelf.tableView.sy_footer endRefreshing];
             count += 15;
-            [self.tableView reloadData];
-            
+            [weakSelf.tableView reloadData];
         });
     }];
 
