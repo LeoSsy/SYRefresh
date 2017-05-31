@@ -22,7 +22,6 @@ static int count = 90;
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
     self.collectionView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationTop height:60 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.sy_header endRefreshing];

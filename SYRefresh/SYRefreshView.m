@@ -176,6 +176,7 @@
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
     self.scrollview = (UIScrollView*)newSuperview;
     if ([self refreshOriIsLeftOrRight]) {
+        if (newSuperview && [newSuperview isKindOfClass:[UITableView class]])  return; //tableview不支持水平刷新
         self.width = self.sy_height;
         self.left = 0;
         if (!self.isFooter) {
@@ -187,7 +188,7 @@
         self.height = self.sy_height;
         self.left = 0;
         if (!self.isFooter) {
-            self.top = -self.sy_height;
+            self.top = - self.height;
         }else{
             self.top = CGRectGetMaxY(newSuperview.frame);
         }
@@ -303,6 +304,7 @@
 
 - (void)scrollViewContentSizeDidChange
 {
+    
     CGSize contentsize = self.scrollview.contentSize;
     if (self.orientation == SYRefreshViewOrientationRight) {
         if (self.left != contentsize.width) {
@@ -355,7 +357,7 @@
                 }
             }
         }else{
-
+            
             CGFloat contentS = self.scrollview.contentSize.height;
             if (contentS<self.scrollview.height) { //内容不足一个屏幕 就不显示尾部的刷新
                 self.scrollview.sy_footer.alpha = 0.f;
@@ -510,19 +512,19 @@
     [self setNeedsLayout];
 }
 
-
 - (void)beginRefreshing
 {
+    if (self.state == SYRefreshViewRefreshing || self.state == SYRefreshViewNoMoreData)  return;
     if (self.state == SYRefreshViewStateIdle) {
         [UIView animateWithDuration:SYAnimationDuration animations:^{
             self.alpha = 1.0;
         }];
     }
     self.state = SYRefreshViewRefreshing;
+    self.arrowView.hidden = YES;
     if (!self.hideAllSubviews) {
         [self.indicatorView startAnimating];
     }
-    self.arrowView.hidden = YES;
     if ([self refreshOriIsLeftOrRight]) {
         [self beginRefreshingOffsetX];
     }else{
@@ -740,6 +742,7 @@
 {
     self.arrowView.hidden = YES;
     self.indicatorView.hidden = YES;
+    self.state = SYRefreshViewNoMoreData;
     self.titleL.text = self.headerNoMoreDataItem.title? self.headerNoMoreDataItem.title:SYRefreshViewNoMoreDataTitle;
     self.titleL.textColor = self.headerNoMoreDataItem.color? self.headerNoMoreDataItem.color:[UIColor blackColor];
     
@@ -752,7 +755,7 @@
         [UIView animateWithDuration:SYAnimationDuration animations:^{
             self.scrollview.contentInset = UIEdgeInsetsMake(self.scrollview.contentInset.top, self.scrollview.contentInset.left, self.scrollview.contentInset.bottom+self.height, self.scrollview.contentInset.right);
         }completion:^(BOOL finished) {
-
+            
         }];
     }
     [self setNeedsLayout];
