@@ -294,7 +294,9 @@
 
 - (void)scrollViewDidScrollChange
 {
-    if (self.state == SYRefreshViewRefreshing) return;
+    [self.indicatorView stopAnimating];
+    //防止跳转到下一个控制器 重复刷新问题
+    if (self.state == SYRefreshViewRefreshing || !self.window) return;
     if ([self refreshOriIsLeftOrRight]) {
         [self refreshOffsetXchanged];
     }else{
