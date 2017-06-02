@@ -14,5 +14,4 @@
 #import "SYGifTextHeader.h"
 #import "UIScrollView+SYRefresh.h"
 
-
 #endif /* SYRefresh_h */
