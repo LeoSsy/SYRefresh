@@ -202,6 +202,7 @@
 - (void)didAddSubview:(UIView *)subview
 {
     [super didAddSubview:subview];
+    if (self.isFooter) return;
     UIViewController *currentVc = [self currentViewController];
     if (currentVc.automaticallyAdjustsScrollViewInsets == NO) { //如果用户设置了不要自定调整内边距 我们就自己处理导航栏问题
         if ([currentVc.parentViewController isKindOfClass:[UINavigationController class]]) {

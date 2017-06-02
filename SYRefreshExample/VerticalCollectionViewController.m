@@ -22,6 +22,7 @@ static int count = 90;
     
     __weak typeof(self)weakSelf = self;
 
+    self.automaticallyAdjustsScrollViewInsets = NO;
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.collectionView.sy_header = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationTop height:60 completionBlock:^{
