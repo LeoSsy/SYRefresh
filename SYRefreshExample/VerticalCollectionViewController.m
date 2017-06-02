@@ -41,7 +41,7 @@ static int count = 90;
     
     self.collectionView.sy_footer = [SYRefreshView refreshWithOrientation:SYRefreshViewOrientationBottom height:80 completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.collectionView.sy_footer endRefreshing];
+            [weakSelf.collectionView.sy_footer noMoreData];
             count+=15;
             [weakSelf.collectionView reloadData];
         });

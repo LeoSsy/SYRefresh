@@ -176,7 +176,6 @@
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
     self.scrollview = (UIScrollView*)newSuperview;
     if ([self refreshOriIsLeftOrRight]) {
-        if (newSuperview && [newSuperview isKindOfClass:[UITableView class]])  return; //tableview不支持水平刷新
         self.width = self.sy_height;
         self.left = 0;
         if (!self.isFooter) {
@@ -188,7 +187,7 @@
         self.height = self.sy_height;
         self.left = 0;
         if (!self.isFooter) {
-            self.top = - self.height;
+            self.top = -self.sy_height;
         }else{
             self.top = CGRectGetMaxY(newSuperview.frame);
         }
@@ -204,7 +203,7 @@
 {
     [super didAddSubview:subview];
     UIViewController *currentVc = [self currentViewController];
-    if (currentVc.automaticallyAdjustsScrollViewInsets) {
+    if (currentVc.automaticallyAdjustsScrollViewInsets == NO) { //如果用户设置了不要自定调整内边距 我们就自己处理导航栏问题
         if ([currentVc.parentViewController isKindOfClass:[UINavigationController class]]) {
             UIEdgeInsets oldInsets = self.scrollview.contentInset;
             oldInsets.top = SYNavHeight;
@@ -294,7 +293,7 @@
 
 - (void)scrollViewDidScrollChange
 {
-    //防止跳转到下一个控制器 重复刷新问题
+    [self.indicatorView stopAnimating];
     if (self.state == SYRefreshViewRefreshing || !self.window) return;
     if ([self refreshOriIsLeftOrRight]) {
         [self refreshOffsetXchanged];
@@ -305,7 +304,6 @@
 
 - (void)scrollViewContentSizeDidChange
 {
-    
     CGSize contentsize = self.scrollview.contentSize;
     if (self.orientation == SYRefreshViewOrientationRight) {
         if (self.left != contentsize.width) {
@@ -496,12 +494,22 @@
 {
     UIColor *normalColor = [UIColor blackColor];
     
-    if (self.state == SYRefreshViewStateIdle) {
-        self.titleL.text = item.title?item.title:SYRefreshViewStateIdleTitle;
-    }else if (self.state == SYRefreshViewPulling){
-        self.titleL.text = item.title?item.title:SYRefreshViewPullingTitle;
-    }else if (self.state == SYRefreshViewRefreshing){
-        self.titleL.text = item.title?item.title:SYRefreshViewRefreshingTitle;
+    if (self.isFooter) { //如果是尾部刷新控件
+        if (self.state == SYRefreshViewStateIdle) {
+            self.titleL.text = item.title?item.title:SYRefreshViewFooterStateIdleTitle;
+        }else if (self.state == SYRefreshViewPulling){
+            self.titleL.text = item.title?item.title:SYRefreshViewFooterPullingTitle;
+        }else if (self.state == SYRefreshViewRefreshing){
+            self.titleL.text = item.title?item.title:SYRefreshViewFooterRefreshingTitle;
+        }
+    }else{
+        if (self.state == SYRefreshViewStateIdle) {
+            self.titleL.text = item.title?item.title:SYRefreshViewStateIdleTitle;
+        }else if (self.state == SYRefreshViewPulling){
+            self.titleL.text = item.title?item.title:SYRefreshViewPullingTitle;
+        }else if (self.state == SYRefreshViewRefreshing){
+            self.titleL.text = item.title?item.title:SYRefreshViewRefreshingTitle;
+        }
     }
     self.titleL.textColor = item.color?item.color:normalColor;
     self.titleL.font = item.font?item.font:SYRefreshViewTitleFont;
@@ -512,6 +520,13 @@
     }
     [self setNeedsLayout];
 }
+
+- (void)getNormalTitle
+{
+    
+}
+
+
 
 - (void)beginRefreshing
 {

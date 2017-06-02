@@ -22,6 +22,9 @@ UIKIT_EXTERN NSString *const SYKeyPathContentSize;
 UIKIT_EXTERN NSString *const SYRefreshViewStateIdleTitle;
 UIKIT_EXTERN NSString *const SYRefreshViewPullingTitle;
 UIKIT_EXTERN NSString *const SYRefreshViewRefreshingTitle;
+UIKIT_EXTERN NSString *const SYRefreshViewFooterStateIdleTitle;
+UIKIT_EXTERN NSString *const SYRefreshViewFooterPullingTitle;
+UIKIT_EXTERN NSString *const SYRefreshViewFooterRefreshingTitle;
 UIKIT_EXTERN NSString *const SYRefreshViewNoMoreDataTitle;
 
 UIKIT_EXTERN const CGFloat SYHeaderHeight; //头部控件默认高度
