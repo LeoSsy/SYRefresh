@@ -522,6 +522,13 @@
     [self setNeedsLayout];
 }
 
+- (void)getNormalTitle
+{
+    
+}
+
+
+
 - (void)beginRefreshing
 {
     if (self.state == SYRefreshViewRefreshing || self.state == SYRefreshViewNoMoreData)  return;

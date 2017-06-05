@@ -47,5 +47,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    NSLog(@"收到内存警告=====");
+}
+
 
 @end

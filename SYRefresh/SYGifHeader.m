@@ -76,6 +76,7 @@
             item.duration = duration;
             [self.images addObject:item];
         }
+        CFRelease(source)
     }
     return self;
 }
@@ -191,7 +192,6 @@
         self.imageView.index = (self.imageView.animatedImage.frameCount-1)*progress;
     }
 }
-
 
 @end
 
@@ -361,12 +361,6 @@
     }else{
         self.gifItem.imageView.frame = self.bounds;
     }
-}
-
-- (void)removeFromSuperview
-{
-    [super removeFromSuperview];
-    self.gifItem = nil;
 }
 
 @end

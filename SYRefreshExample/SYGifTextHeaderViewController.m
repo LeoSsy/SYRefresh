@@ -19,10 +19,8 @@
     [super viewDidLoad];
     
     NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-small.gif" ofType:nil];
-    NSData *data = [NSData dataWithContentsOfFile:url];
-
     __weak typeof(self)weakSelf = self;
-    self.tableView.sy_header = [SYGifTextHeader headerWithData:data orientation:SYRefreshViewOrientationTop isBig:NO height:100 callBack:^{
+    self.tableView.sy_header = [SYGifTextHeader headerGifPath:url orientation:SYRefreshViewOrientationTop isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.tableView.sy_header endRefreshing];
             NSLog(@"刷新结束");
