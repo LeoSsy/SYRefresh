@@ -19,14 +19,17 @@
     [super viewDidLoad];
     
     __weak typeof(self)weakSelf = self;
+
     NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-big.gif" ofType:nil];
-    self.tableView.sy_header = [SYGifHeader headerGifPath:url orientation:SYRefreshViewOrientationTop isBig:YES height:150 callBack:^{
+    NSData *data = [NSData dataWithContentsOfFile:url];
+    self.tableView.sy_header = [SYGifHeader headerWithData:data orientation:SYRefreshViewOrientationTop isBig:YES height:150 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.tableView.sy_header endRefreshing];
             NSLog(@"刷新结束");
         });
     }];
     [self.tableView.sy_header beginRefreshing];
+    
     
 }
 

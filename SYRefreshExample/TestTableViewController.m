@@ -69,7 +69,6 @@ int count = 20;
     
     self.tableView.sectionHeaderHeight = 45;
     self.tableView.sectionFooterHeight = 0;
-    
 }
 
 

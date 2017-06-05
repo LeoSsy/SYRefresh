@@ -27,11 +27,12 @@ static NSString * const reuseIdentifier = @"Cell";
     __weak typeof(self)weakSelf = self;
 
     self.collectionView.backgroundColor = [UIColor colorWithRed:41/255.0 green:68/255.0 blue:119/255.0 alpha:1.0];
+    
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-big.gif" ofType:nil];
-//    NSData *data = [NSData dataWithContentsOfFile:url];
-    self.collectionView.sy_header = [SYGifHeader headerGifPath:url orientation:SYRefreshViewOrientationLeft isBig:NO height:100 callBack:^{
+    NSData *data = [NSData dataWithContentsOfFile:url];
+    self.collectionView.sy_header = [SYGifHeader headerWithData:data orientation:SYRefreshViewOrientationLeft isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.collectionView.sy_header endRefreshing];
             NSLog(@"刷新结束");
@@ -39,7 +40,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }];
     [self.collectionView.sy_header beginRefreshing];
     
-    self.collectionView.sy_footer = [SYGifHeader headerGifPath:url orientation:SYRefreshViewOrientationRight isBig:NO height:100 callBack:^{
+    self.collectionView.sy_footer = [SYGifHeader headerWithData:data orientation:SYRefreshViewOrientationRight isBig:NO height:100 callBack:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.collectionView.sy_footer endRefreshing];
             NSLog(@"刷新结束");
