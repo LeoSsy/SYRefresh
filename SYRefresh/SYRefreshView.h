@@ -64,16 +64,16 @@ typedef void (^SYRefreshViewbeginRefreshingCompletionBlock)();
 
 @interface SYRefreshView : UIView
 /**
-*  创建刷新控件
-*  @param height  刷新控件高度
-*  @param isFooter 是否添加到scrollview的尾部
-*  @param completionBlock 开始刷新之后的回调
-*/
+ *  创建刷新控件
+ *  @param height  刷新控件高度
+ *  @param isFooter 是否添加到scrollview的尾部
+ *  @param completionBlock 开始刷新之后的回调
+ */
 + (SYRefreshView*)refreshWithHeight:(CGFloat)height isFooter:(BOOL)isFooter completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
 
 /**
  *  创建支持水平垂直方向刷新控件
- *  @param  orientation 刷新控件的方向 
+ *  @param  orientation 刷新控件的方向
  *  @param height       刷新控件高度
  *  @param completionBlock 开始刷新之后的回调
  */

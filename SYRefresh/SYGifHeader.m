@@ -11,6 +11,109 @@
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
+@interface SYProxy : NSProxy
+
+@property (nonatomic, weak, readonly) id target;
+
+- (instancetype)initWithTarget:(id)target;
+
++ (instancetype)proxyWithTarget:(id)target;
+
+@end
+
+@implementation SYProxy
+
+- (instancetype)initWithTarget:(id)target {
+    _target = target;
+    return self;
+}
+
++ (instancetype)proxyWithTarget:(id)target {
+    return [[SYProxy alloc] initWithTarget:target];
+}
+
+- (id)forwardingTargetForSelector:(SEL)selector {
+    return _target;
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    void *null = NULL;
+    [invocation setReturnValue:&null];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+    return [NSObject instanceMethodSignatureForSelector:@selector(init)];
+}
+
+@end
+
+
+@interface SYAnimatedImage : NSObject
+/**图片尺寸*/
+@property(nonatomic,assign)CGSize size;
+/**图片帧数*/
+@property(nonatomic,assign)NSInteger frameCount;
+/**
+ 获取当前帧图片对应时间
+ @param  index 第几帧
+ @return 当前帧图片对应时间
+ */
+- (NSTimeInterval)frameDurationForImage:(NSInteger)index;
+/**
+ 获取当前帧图片
+ @param  index 第几帧
+ @return 当前帧图片
+ */
+- (UIImage*)imageForIndex:(NSInteger)index;
+@end
+
+
+@interface SYGifAnimatedImageView : UIImageView
+/**gif图片对象*/
+@property(nonatomic,strong)SYAnimatedImage *animatedImage;
+/**当前的索引*/
+@property(nonatomic,assign)NSInteger index;
+/**是否正在动画*/
+@property(nonatomic,assign)BOOL animated;
+/**上一帧的时间*/
+@property(nonatomic, assign) NSTimeInterval lastTimestamp;
+/**定时器*/
+@property(nonatomic,strong)CADisplayLink *displayLink;
+@end
+
+@interface SYGifAnimatedImage : SYAnimatedImage
+/**图片数组*/
+@property(nonatomic,strong)NSMutableArray *images;
+/**初始化方法*/
+- (instancetype)initWithData:(NSData*)data;
+@end
+
+@interface SYGifItem : NSObject
+/**图片数据*/
+@property(nonatomic,strong)NSData *data;
+/**是否是大图*/
+@property(nonatomic,assign)BOOL isBig;
+/**高度*/
+@property(nonatomic,assign)CGFloat height;
+/**动画图像对象*/
+@property(nonatomic,strong)SYGifAnimatedImageView *imageView;
+/**
+ 初始化方法
+ @param data 图片数据
+ @param isBig 是否是大图
+ @param height 图片高度
+ @return SYGifItem
+ */
+- (instancetype)initWithData:(NSData*)data idBig:(BOOL)isBig height:(CGFloat)height;
+
+/**播放图片方法*/
+- (void)updateState:(BOOL)isRefreshing;
+- (void)updateProgress:(CGFloat)progress;
+
+/**以下属性为辅助属性 用在解析图片时保存图片信息*/
+@property(nonatomic,strong)UIImage *image;
+@property(nonatomic,assign)CGFloat  duration;
+@end
 
 @implementation SYAnimatedImage
 
@@ -75,7 +178,9 @@
             item.image = [UIImage imageWithCGImage:image];
             item.duration = duration;
             [self.images addObject:item];
+            CGImageRelease(image);
         }
+        CFRelease(source);
     }
     return self;
 }
@@ -112,7 +217,7 @@
 - (CADisplayLink *)displayLink
 {
     if (!_displayLink) {
-        _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(refreshDisplay)];
+        _displayLink = [CADisplayLink displayLinkWithTarget:[SYProxy proxyWithTarget:self] selector:@selector(refreshDisplay)];
         [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
         _displayLink.paused = YES;
     }
@@ -142,6 +247,11 @@
         self.index = (self.index+1)%self.animatedImage.frameCount;
         self.lastTimestamp = self.displayLink.timestamp;
     }
+}
+
+- (void)dealloc
+{
+    [self.displayLink invalidate];
 }
 
 @end
@@ -198,6 +308,9 @@
 @interface SYGifHeader()
 @property(nonatomic,strong)NSMutableDictionary *images; //保存对应状态的图片
 @property(nonatomic,strong)NSMutableDictionary *durations; //保存对应状态的动画时间
+@property(nonatomic,strong)UIImageView *gifImageView;//gif图片显示view
+@property(nonatomic,strong)SYGifItem *gifItem;//图像信息 保存当前帧的图片和总帧数
+
 @end
 
 @implementation SYGifHeader
@@ -268,6 +381,7 @@
 {
     [super endRefreshing];
     [self.gifItem updateState:NO];
+    self.gifItem = nil;
 }
 
 - (void)setGifItem:(SYGifItem *)gifItem
@@ -339,6 +453,15 @@
     return self.images.count>0?NO:YES;
 }
 
+- (UIImageView*)getGifView
+{
+    if (self.isLoadedGif) {
+        return self.gifItem.imageView;
+    }else{
+        return self.gifImageView;
+    }
+}
+
 - (CGSize)imageSize
 {
     if (self.images.count) {
@@ -363,9 +486,8 @@
     }
 }
 
-- (void)removeFromSuperview
+- (void)dealloc
 {
-    [super removeFromSuperview];
     self.gifItem = nil;
 }
 

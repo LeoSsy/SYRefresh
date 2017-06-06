@@ -19,7 +19,6 @@
     [super viewDidLoad];
     
     __weak typeof(self)weakSelf = self;
-
     NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-big.gif" ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:url];
     self.tableView.sy_header = [SYGifHeader headerWithData:data orientation:SYRefreshViewOrientationTop isBig:YES height:150 callBack:^{
@@ -45,5 +44,12 @@
     cell.textLabel.text = [NSString stringWithFormat:@"title===%zd",indexPath.row];
     return cell;
 }
+
+//- (void)dealloc
+//{
+////    self.tableView.sy_header = nil;
+////    self.tableView.sy_footer = nil;
+//    NSLog(@"deallocdealloc");
+//}
 
 @end

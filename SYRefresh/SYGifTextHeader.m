@@ -19,7 +19,7 @@
     [super prepare];
     self.titleL.font = [UIFont systemFontOfSize:12];
     self.titleL.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:self.gifItem.imageView];
+    [self addSubview:[self getGifView]];
     [self.titleL bringSubviewToFront:self];
 }
 
@@ -42,16 +42,8 @@
                                 self.titleL.height = SYVerticalOroTitleW;
                                 self.titleL.top = CGRectGetMaxY(gifView.frame)+SYArrowRightMargin;
                                 self.titleL.centerX = gifView.centerX;)
-    }    
-}
-
-- (UIImageView*)getGifView
-{
-    if (self.isLoadedGif) {
-        return self.gifItem.imageView;
-    }else{
-        return self.gifImageView;
     }
 }
+
 
 @end

@@ -25,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="-752"/>
+            <point key="canvasLocation" x="-1588" y="-2025"/>
         </scene>
         <!--示例-->
         <scene sceneID="yzA-jp-qG5">
@@ -210,7 +210,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rc-1T-1Cz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-217" y="134"/>
+            <point key="canvasLocation" x="-3671" y="3471"/>
         </scene>
         <!--Gif Text Header View Controller-->
         <scene sceneID="uPb-TZ-w63">
@@ -238,7 +238,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bT6-MH-t73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="555"/>
+            <point key="canvasLocation" x="-1588" y="2527"/>
         </scene>
         <!--Gif View Controller-->
         <scene sceneID="51Z-Oc-2HN">
@@ -266,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pzz-l5-ozp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1254" y="-184"/>
+            <point key="canvasLocation" x="-1588" y="-1381"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g9P-3A-D4k">
@@ -282,7 +282,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gat-bG-1Iu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1039" y="149"/>
+            <point key="canvasLocation" x="-4335" y="3471"/>
         </scene>
         <!--Test Collection View Controller-->
         <scene sceneID="krx-A9-LD6">
@@ -316,7 +316,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nob-Nm-rjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="519" y="48"/>
+            <point key="canvasLocation" x="-1588" y="-740"/>
         </scene>
         <!--Gif Collection View Controller-->
         <scene sceneID="0He-on-02G">
@@ -350,7 +350,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aS-nY-UPn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-87" y="929"/>
+            <point key="canvasLocation" x="-1588" y="603"/>
         </scene>
         <!--Text Header Collection View Controller-->
         <scene sceneID="Smy-Yy-Uch">
@@ -384,7 +384,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uWr-75-zKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-666" y="881"/>
+            <point key="canvasLocation" x="-1588" y="1880"/>
         </scene>
         <!--Test Table View Controller-->
         <scene sceneID="cEj-e3-HGh">
@@ -412,12 +412,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q8i-bu-6af" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1588" y="-105"/>
         </scene>
         <!--Vertical Collection View Controller-->
         <scene sceneID="L5v-Pp-l6Z">
             <objects>
                 <collectionViewController id="dXz-Ac-3VW" customClass="VerticalCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="pgt-7S-svy">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pgt-7S-svy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -445,7 +446,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZjF-2M-Urd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-46" y="-549"/>
+            <point key="canvasLocation" x="-1588" y="1242"/>
         </scene>
     </scenes>
 </document>
