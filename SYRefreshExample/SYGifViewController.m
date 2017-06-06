@@ -47,8 +47,8 @@
 
 - (void)dealloc
 {
-    self.tableView.sy_header = nil;
-    self.tableView.sy_footer = nil;
+//    self.tableView.sy_header = nil;
+//    self.tableView.sy_footer = nil;
     NSLog(@"deallocdealloc");
 }
 

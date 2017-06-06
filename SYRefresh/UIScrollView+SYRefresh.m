@@ -47,11 +47,12 @@ static const char SYRefreshFooterKey = '\0';
 - (void)removeFromSuperview
 {
     [super removeFromSuperview];
-    
-    if (!self.window) {
-        self.sy_header = nil;
-        self.sy_footer = nil;
-    }
+    self.sy_header = nil;
+    self.sy_footer = nil;
+}
+
+- (void)dealloc {
+    NSLog(@"deallocdeallocdeallocdealloc");
 }
 
 @end

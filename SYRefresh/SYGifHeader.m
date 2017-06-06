@@ -312,7 +312,7 @@
 {
     if (!_gifImageView) {
         _gifImageView = [[UIImageView alloc] init];
-        [self addSubview:_gifImageView];
+        [self insertSubview:self.gifImageView atIndex:MAXFLOAT];
     }
     return _gifImageView;
 }
@@ -364,13 +364,13 @@
 - (void)beginRefreshing
 {
     [super beginRefreshing];
-    [self.gifItem updateState:YES];
+    if ([self isLoadedGif]) [self.gifItem updateState:YES];
 }
 
 - (void)endRefreshing
 {
     [super endRefreshing];
-    [self.gifItem updateState:NO];
+    if ([self isLoadedGif]) [self.gifItem updateState:NO];
 }
 
 - (void)setGifItem:(SYGifItem *)gifItem
@@ -388,9 +388,10 @@
     if (images==nil) return;
     self.images[@(state)] = images;
     self.durations[@(state)] = @(duration);
-    self.gifImageView.top = 0;
-    self.gifImageView.size = [self imageSize];
-    
+    if (self.images.count==1) {
+        self.gifImageView.top = 0;
+        self.gifImageView.size = [self imageSize];
+    }
 }
 
 - (void)setImages:(NSArray *)images forState:(SYRefreshViewState)state
@@ -401,7 +402,6 @@
 - (void)dragingProgress:(CGFloat)progress
 {
     [super dragingProgress:progress];
-    
     if (self.images.count>0) {
         self.gifImageView.hidden = NO;
         NSArray *images = self.images[@(SYRefreshViewStateIdle)];

@@ -21,15 +21,10 @@ int count = 20;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSString *url =  [[NSBundle mainBundle] pathForResource:@"demo-big.gif" ofType:nil];
-//    NSData *data = [NSData dataWithContentsOfFile:url];
-
-    
     __weak typeof(self)weakSelf = self;
 
         SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:100 orientation:SYRefreshViewOrientationTop callBack:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [self.tableView.sy_footer noMoreData];
                 [weakSelf.tableView.sy_header endRefreshing];
                 count = 25;
                 [weakSelf.tableView reloadData];
@@ -55,7 +50,16 @@ int count = 20;
         [gifHeader setImages:pullingImages  forState:SYRefreshViewPulling];
         [gifHeader setImages:refreshingImages forState:SYRefreshViewRefreshing];
         self.tableView.sy_header = gifHeader;
-        
+    
+//    self.tableView.sy_header = [SYRefreshView refreshWithHeight:55 isFooter:NO completionBlock:^{
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [weakSelf.tableView.sy_header endRefreshing];
+//            count = 25;
+//            [weakSelf.tableView reloadData];
+//        });
+//    }];
+//    
+
    
     self.tableView.sy_footer = [SYRefreshView refreshWithHeight:55 isFooter:YES completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
