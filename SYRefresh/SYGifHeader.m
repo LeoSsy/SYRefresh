@@ -10,6 +10,7 @@
 #import "SYRefreshView.h"
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "SYSYRefreshConst.h"
 
 @interface SYProxy : NSProxy
 
@@ -47,7 +48,6 @@
 
 @end
 
-
 @interface SYAnimatedImage : NSObject
 /**图片尺寸*/
 @property(nonatomic,assign)CGSize size;
@@ -65,8 +65,8 @@
  @return 当前帧图片
  */
 - (UIImage*)imageForIndex:(NSInteger)index;
-@end
 
+@end
 
 @interface SYGifAnimatedImageView : UIImageView
 /**gif图片对象*/
@@ -249,11 +249,6 @@
     }
 }
 
-- (void)dealloc
-{
-    [self.displayLink invalidate];
-}
-
 @end
 
 @implementation SYGifItem
@@ -302,7 +297,6 @@
     }
 }
 
-
 @end
 
 @interface SYGifHeader()
@@ -310,7 +304,6 @@
 @property(nonatomic,strong)NSMutableDictionary *durations; //保存对应状态的动画时间
 @property(nonatomic,strong)UIImageView *gifImageView;//gif图片显示view
 @property(nonatomic,strong)SYGifItem *gifItem;//图像信息 保存当前帧的图片和总帧数
-
 @end
 
 @implementation SYGifHeader
@@ -342,6 +335,18 @@
 
 + (instancetype)headerWithHeight:(CGFloat)height orientation:(SYRefreshViewOrientation)orientation  callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
 {
+    return [self createHeaderOrientation:orientation height:height callBack:finishRefreshBlock];
+}
+
++ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
+{
+    SYGifHeader *header = [self createHeaderOrientation:orientation height:height callBack:finishRefreshBlock];
+    header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:height];
+    return header;
+}
+
++ (instancetype)createHeaderOrientation:(SYRefreshViewOrientation)orientation height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock
+{
     SYGifHeader *header = [[self alloc] init];
     header.orientation = orientation;
     BOOL isFooter = NO;
@@ -352,24 +357,9 @@
     header.sy_height =  height;
     header.hideAllSubviews = YES;
     header.beginBlock = finishRefreshBlock;
-    return header;
+    return  header;
 }
 
-+ (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
-{
-    SYGifHeader *header = [[self alloc] init];
-    header.orientation = orientation;
-    BOOL isFooter = NO;
-    if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
-        isFooter = YES;
-    }
-    header.sy_height = height;
-    header.isFooter = isFooter;
-    header.hideAllSubviews = YES;
-    header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:height];
-    header.beginBlock = finishRefreshBlock;
-    return header;
-}
 
 - (void)beginRefreshing
 {
@@ -381,7 +371,6 @@
 {
     [super endRefreshing];
     [self.gifItem updateState:NO];
-    self.gifItem = nil;
 }
 
 - (void)setGifItem:(SYGifItem *)gifItem
@@ -478,17 +467,12 @@
     
     if (self.images.count>0) {
         CGFloat imgH = [self imageSize].height;
-        self.top = - self.height;
-        self.gifImageView.centerX = self.centerX;
-        self.gifImageView.top = self.height - imgH-(self.animtaionImageBottomMargin?_animtaionImageBottomMargin:0);
+        PerformWithoutAnimation( self.top = - self.height;
+                                self.gifImageView.centerX = self.centerX;
+                                self.gifImageView.top = self.height - imgH-(self.animtaionImageBottomMargin?_animtaionImageBottomMargin:0);)
     }else{
-        self.gifItem.imageView.frame = self.bounds;
+        PerformWithoutAnimation(self.gifItem.imageView.frame = self.bounds;)
     }
-}
-
-- (void)dealloc
-{
-    self.gifItem = nil;
 }
 
 @end
