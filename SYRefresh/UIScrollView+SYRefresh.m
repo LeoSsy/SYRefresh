@@ -51,8 +51,4 @@ static const char SYRefreshFooterKey = '\0';
     self.sy_footer = nil;
 }
 
-- (void)dealloc {
-    NSLog(@"deallocdeallocdeallocdealloc");
-}
-
 @end

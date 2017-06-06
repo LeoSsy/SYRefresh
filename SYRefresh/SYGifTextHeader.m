@@ -34,11 +34,15 @@
     [super layoutSubviews];
     UIImageView *gifView = [self getGifView];
     CGSize imgSize = [self imageSize];
-    gifView.frame =CGRectMake(CGRectGetMinX(self.titleL.frame)-imgSize.width*0.5, 0, imgSize.width*0.5, imgSize.height*0.5);
+    PerformWithoutAnimation(
+      gifView.frame =CGRectMake(CGRectGetMinX(self.titleL.frame)-imgSize.width*0.5, 0, imgSize.width*0.5, imgSize.height*0.5);
+    )
     if ([self refreshOriIsLeftOrRight]) { //水平刷新的时候才需要调整位置和尺寸
-        gifView.centerY = self.centerY;
-        gifView.left = 0;
-        PerformWithoutAnimation(self.titleL.width = self.width;
+       
+        PerformWithoutAnimation(
+                                gifView.centerY = self.centerY;
+                                gifView.left = 0;
+                                self.titleL.width = self.width;
                                 self.titleL.height = SYVerticalOroTitleW;
                                 self.titleL.top = CGRectGetMaxY(gifView.frame)+SYArrowRightMargin;
                                 self.titleL.centerX = gifView.centerX;)

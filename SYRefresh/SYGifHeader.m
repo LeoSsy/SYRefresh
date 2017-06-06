@@ -256,7 +256,6 @@
 - (instancetype)initWithData:(NSData*)data idBig:(BOOL)isBig height:(CGFloat)height
 {
     if (self = [super init]) {
-        
         self.data = data;
         self.isBig = isBig;
         self.height = height;
@@ -275,7 +274,6 @@
             rect.size = CGSizeMake(scale*height*0.67, height*0.67);
             self.imageView.bounds = rect;
             self.imageView.contentMode= UIViewContentModeScaleAspectFit;
-            
         }
     }
     return self;
@@ -347,12 +345,12 @@
 
 + (instancetype)createHeaderOrientation:(SYRefreshViewOrientation)orientation height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock
 {
-    SYGifHeader *header = [[self alloc] init];
-    header.orientation = orientation;
     BOOL isFooter = NO;
     if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
         isFooter = YES;
     }
+    SYGifHeader *header = [[self alloc] init];
+    header.orientation = orientation;
     header.isFooter = isFooter;
     header.sy_height =  height;
     header.hideAllSubviews = YES;
@@ -465,7 +463,7 @@
 {
     [super layoutSubviews];
     
-    if (self.images.count>0) {
+    if (![self isLoadedGif]) {
         CGFloat imgH = [self imageSize].height;
         PerformWithoutAnimation( self.top = - self.height;
                                 self.gifImageView.centerX = self.centerX;

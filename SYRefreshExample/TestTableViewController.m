@@ -23,43 +23,42 @@ int count = 20;
     
     __weak typeof(self)weakSelf = self;
 
-        SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:100 orientation:SYRefreshViewOrientationTop callBack:^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakSelf.tableView.sy_header endRefreshing];
-                count = 25;
-                [weakSelf.tableView reloadData];
-
-            });
-        }];
-        
-        NSMutableArray *normailImages = [NSMutableArray array];
-        for (int i = 1 ; i<=19; i++) {
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_camera_frame%d",i]];
-            [normailImages addObject:image];
-        }
-        NSMutableArray *pullingImages = [NSMutableArray array];
-        UIImage *image = [UIImage imageNamed:@"refresh_camera_frame20"];
-        [pullingImages addObject:image];
-    
-        NSMutableArray *refreshingImages = [NSMutableArray array];
-        for (int i = 21 ; i<=45; i++) {
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_camera_frame%d",i]];
-            [refreshingImages addObject:image];
-         }
-        [gifHeader setImages:normailImages  forState:SYRefreshViewStateIdle];
-        [gifHeader setImages:pullingImages  forState:SYRefreshViewPulling];
-        [gifHeader setImages:refreshingImages forState:SYRefreshViewRefreshing];
-        self.tableView.sy_header = gifHeader;
-    
-//    self.tableView.sy_header = [SYRefreshView refreshWithHeight:55 isFooter:NO completionBlock:^{
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [weakSelf.tableView.sy_header endRefreshing];
-//            count = 25;
-//            [weakSelf.tableView reloadData];
-//        });
-//    }];
+//        SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:100 orientation:SYRefreshViewOrientationTop callBack:^{
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [weakSelf.tableView.sy_header endRefreshing];
+//                count = 25;
+//                [weakSelf.tableView reloadData];
+//
+//            });
+//        }];
+//        
+//        NSMutableArray *normailImages = [NSMutableArray array];
+//        for (int i = 1 ; i<=19; i++) {
+//            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_camera_frame%d",i]];
+//            [normailImages addObject:image];
+//        }
+//        NSMutableArray *pullingImages = [NSMutableArray array];
+//        UIImage *image = [UIImage imageNamed:@"refresh_camera_frame20"];
+//        [pullingImages addObject:image];
 //    
-
+//        NSMutableArray *refreshingImages = [NSMutableArray array];
+//        for (int i = 21 ; i<=45; i++) {
+//            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_camera_frame%d",i]];
+//            [refreshingImages addObject:image];
+//         }
+//        [gifHeader setImages:normailImages  forState:SYRefreshViewStateIdle];
+//        [gifHeader setImages:pullingImages  forState:SYRefreshViewPulling];
+//        [gifHeader setImages:refreshingImages forState:SYRefreshViewRefreshing];
+//        self.tableView.sy_header = gifHeader;
+    
+    self.tableView.sy_header = [SYRefreshView refreshWithHeight:55 isFooter:NO completionBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.tableView.sy_header endRefreshing];
+            count = 25;
+            [weakSelf.tableView reloadData];
+        });
+    }];
+    [self.tableView.sy_header beginRefreshing];
    
     self.tableView.sy_footer = [SYRefreshView refreshWithHeight:55 isFooter:YES completionBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -70,7 +69,6 @@ int count = 20;
     }];
 
     [self.tableView.sy_footer autoRefresh];
-    
     self.tableView.sectionHeaderHeight = 45;
     self.tableView.sectionFooterHeight = 0;
 }

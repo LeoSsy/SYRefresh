@@ -294,7 +294,6 @@
 
 - (void)scrollViewDidScrollChange
 {
-    [self.indicatorView stopAnimating];
     if (self.state == SYRefreshViewRefreshing || !self.window) return;
     if ([self refreshOriIsLeftOrRight]) {
         [self refreshOffsetXchanged];
