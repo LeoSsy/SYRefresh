@@ -345,16 +345,8 @@
 
 + (instancetype)createHeaderOrientation:(SYRefreshViewOrientation)orientation height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock
 {
-    BOOL isFooter = NO;
-    if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
-        isFooter = YES;
-    }
-    SYGifHeader *header = [[self alloc] init];
-    header.orientation = orientation;
-    header.isFooter = isFooter;
-    header.sy_height =  height;
+    SYGifHeader *header = (SYGifHeader*) [self refreshWithOrientation:orientation height:height completionBlock:finishRefreshBlock];
     header.hideAllSubviews = YES;
-    header.beginBlock = finishRefreshBlock;
     return  header;
 }
 

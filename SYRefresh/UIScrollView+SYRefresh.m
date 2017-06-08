@@ -12,13 +12,11 @@
 
 @implementation UIScrollView (SYRefresh)
 
-static const char SYRefreshHeaderKey = '\0';
-static const char SYRefreshFooterKey = '\0';
-
+const char SYRefreshHeaderKey = '\0';
+const char SYRefreshFooterKey = '\1';
 -(void)setSy_header:(SYRefreshView *)sy_header
 {
     if (sy_header != self.sy_header) {
-        [self.sy_header removeFromSuperview];
         [self insertSubview:sy_header atIndex:MAXFLOAT];
         objc_setAssociatedObject(self, &SYRefreshHeaderKey, sy_header, OBJC_ASSOCIATION_ASSIGN);
     }
@@ -33,7 +31,6 @@ static const char SYRefreshFooterKey = '\0';
 -(void)setSy_footer:(SYRefreshView *)sy_footer
 {
     if (sy_footer != self.sy_footer) {
-        [self.sy_footer removeFromSuperview];
         [self insertSubview:sy_footer atIndex:MAXFLOAT];
         objc_setAssociatedObject(self, &SYRefreshFooterKey, sy_footer, OBJC_ASSOCIATION_ASSIGN);
     }
@@ -49,6 +46,11 @@ static const char SYRefreshFooterKey = '\0';
     [super removeFromSuperview];
     self.sy_header = nil;
     self.sy_footer = nil;
+}
+
+- (void)willRemoveSubview:(UIView *)subview
+{
+    NSLog(@"subview===%@",subview);
 }
 
 @end

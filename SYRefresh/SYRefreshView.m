@@ -119,7 +119,7 @@
 
 + (SYRefreshView*)refreshWithHeight:(CGFloat)height isFooter:(BOOL)isFooter completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock;
 {
-    SYRefreshView *view = [[SYRefreshView alloc] init];
+    SYRefreshView *view = [[self alloc] init];
     view.isFooter = isFooter;
     if (!view.isFooter) {
         view.beginBlock = completionBlock;
@@ -132,7 +132,7 @@
 
 + (SYRefreshView*)refreshWithOrientation:(SYRefreshViewOrientation)orientation height:(CGFloat)height completionBlock:(SYRefreshViewbeginRefreshingCompletionBlock)completionBlock
 {
-    SYRefreshView *view = [[SYRefreshView alloc] init];
+    SYRefreshView *view = [[self alloc] init];
     BOOL isFooter = NO;
     if(orientation==SYRefreshViewOrientationBottom|| orientation==SYRefreshViewOrientationRight){
         isFooter = YES;

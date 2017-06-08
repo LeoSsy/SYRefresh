@@ -23,13 +23,9 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
-    
     __weak typeof(self)weakSelf = self;
-
 //    self.collectionView.backgroundColor = [UIColor colorWithRed:41/255.0 green:68/255.0 blue:119/255.0 alpha:1.0];
     self.collectionView.backgroundColor = [UIColor whiteColor];
-
-    
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     NSString *url =  [[NSBundle mainBundle] pathForResource:@"giphy.gif" ofType:nil];
@@ -49,9 +45,6 @@ static NSString * const reuseIdentifier = @"Cell";
         });
     }];
     [self.collectionView.sy_footer beginRefreshing];
-    
-
-    
 }
 
 #pragma mark <UICollectionViewDataSource>

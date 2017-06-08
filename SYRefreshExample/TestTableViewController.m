@@ -30,7 +30,8 @@ int count = 20;
                 [weakSelf.tableView reloadData];
             });
         }];
-        self.tableView.sy_header = gifHeader; //需要先添加到scrollview上面 然后再设置图片数组 否则会导致崩溃
+     self.tableView.sy_header = gifHeader; //需要先添加到scrollview上面 然后再设置图片数组 否则会导致崩溃 此问题后期优化
+
         NSMutableArray *normailImages = [NSMutableArray array];
         for (int i = 1 ; i<=19; i++) {
             UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_camera_frame%d",i]];
