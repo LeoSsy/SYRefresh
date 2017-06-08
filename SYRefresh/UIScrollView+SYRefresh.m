@@ -48,9 +48,4 @@ const char SYRefreshFooterKey = '\1';
     self.sy_footer = nil;
 }
 
-- (void)willRemoveSubview:(UIView *)subview
-{
-    NSLog(@"subview===%@",subview);
-}
-
 @end
