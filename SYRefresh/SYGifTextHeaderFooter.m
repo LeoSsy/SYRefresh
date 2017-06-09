@@ -6,13 +6,13 @@
 //  Copyright © 2017年 shusy. All rights reserved.
 //  代码地址: https://github.com/shushaoyong/SYRefresh
 
-#import "SYGifTextHeader.h"
+#import "SYGifTextHeaderFooter.h"
 #import "SYSYRefreshConst.h"
-@interface SYGifTextHeader()
+@interface SYGifTextHeaderFooter()
 @property(nonatomic,strong)NSString *textG;
 @end
 
-@implementation SYGifTextHeader
+@implementation SYGifTextHeaderFooter
 
 - (void)prepare
 {

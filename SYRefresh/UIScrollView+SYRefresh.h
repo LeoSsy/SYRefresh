@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SYRefreshView.h"
-#import "SYGifHeader.h"
+#import "SYGifHeaderFooter.h"
 
 @interface UIScrollView (SYRefresh)
 @property(nonatomic,strong)SYRefreshView *sy_header;

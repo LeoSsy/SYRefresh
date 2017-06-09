@@ -23,14 +23,14 @@ int count = 20;
     
         __weak typeof(self)weakSelf = self;
  
-        SYGifHeader *gifHeader = [SYGifHeader headerWithHeight:45 orientation:SYRefreshViewOrientationTop callBack:^{
+        SYGifHeaderFooter *gifHeader = [SYGifHeaderFooter headerWithHeight:45 orientation:SYRefreshViewOrientationTop callBack:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf.tableView.sy_header endRefreshing];
                 count = 25;
                 [weakSelf.tableView reloadData];
             });
         }];
-     self.tableView.sy_header = gifHeader; //需要先添加到scrollview上面 然后再设置图片数组 否则会导致崩溃 此问题后期优化
+      self.tableView.sy_header = gifHeader; //需要先添加到scrollview上面 然后再设置图片数组 否则会导致崩溃 此问题后期优化
 
         NSMutableArray *normailImages = [NSMutableArray array];
         for (int i = 1 ; i<=19; i++) {
@@ -61,7 +61,6 @@ int count = 20;
         self.tableView.sectionHeaderHeight = 45;
         self.tableView.sectionFooterHeight = 0;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return count;

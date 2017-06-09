@@ -13,7 +13,7 @@
 @implementation UIScrollView (SYRefresh)
 
 const char SYRefreshHeaderKey = '\0';
-const char SYRefreshFooterKey = '\1';
+const char SYRefreshFooterKey = '\0';
 -(void)setSy_header:(SYRefreshView *)sy_header
 {
     if (sy_header != self.sy_header) {

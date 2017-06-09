@@ -6,7 +6,7 @@
 //  Copyright © 2017年 shusy. All rights reserved.
 //  代码地址: https://github.com/shushaoyong/SYRefresh
 
-#import "SYGifHeader.h"
+#import "SYGifHeaderFooter.h"
 #import "SYRefreshView.h"
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -297,14 +297,14 @@
 
 @end
 
-@interface SYGifHeader()
+@interface SYGifHeaderFooter()
 @property(nonatomic,strong)NSMutableDictionary *images; //保存对应状态的图片
 @property(nonatomic,strong)NSMutableDictionary *durations; //保存对应状态的动画时间
 @property(nonatomic,strong)UIImageView *gifImageView;//gif图片显示view
 @property(nonatomic,strong)SYGifItem *gifItem;//图像信息 保存当前帧的图片和总帧数
 @end
 
-@implementation SYGifHeader
+@implementation SYGifHeaderFooter
 
 - (UIImageView *)gifImageView
 {
@@ -338,14 +338,14 @@
 
 + (instancetype)headerWithData:(NSData*)data orientation:(SYRefreshViewOrientation)orientation isBig:(BOOL)isBig height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock;
 {
-    SYGifHeader *header = [self createHeaderOrientation:orientation height:height callBack:finishRefreshBlock];
+    SYGifHeaderFooter *header = [self createHeaderOrientation:orientation height:height callBack:finishRefreshBlock];
     header.gifItem = [[SYGifItem alloc] initWithData:data idBig:isBig height:height];
     return header;
 }
 
 + (instancetype)createHeaderOrientation:(SYRefreshViewOrientation)orientation height:(CGFloat)height callBack:(SYRefreshViewbeginRefreshingCompletionBlock)finishRefreshBlock
 {
-    SYGifHeader *header = (SYGifHeader*) [self refreshWithOrientation:orientation height:height completionBlock:finishRefreshBlock];
+    SYGifHeaderFooter *header = (SYGifHeaderFooter*) [self refreshWithOrientation:orientation height:height completionBlock:finishRefreshBlock];
     header.hideAllSubviews = YES;
     return  header;
 }

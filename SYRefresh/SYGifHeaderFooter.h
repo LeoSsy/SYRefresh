@@ -8,7 +8,7 @@
 
 #import "SYRefreshView.h"
 
-@interface SYGifHeader : SYRefreshView
+@interface SYGifHeaderFooter : SYRefreshView
 /**是否是加在的本地的gif图片*/
 - (BOOL)isLoadedGif;
 /**返回当前显示的gif视图控件*/

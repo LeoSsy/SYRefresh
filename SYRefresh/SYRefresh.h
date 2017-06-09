@@ -10,8 +10,8 @@
 #define SYRefresh_h
 
 #import "SYRefreshView.h"
-#import "SYGifHeader.h"
-#import "SYGifTextHeader.h"
+#import "SYGifHeaderFooter.h"
+#import "SYGifTextHeaderFooter.h"
 #import "UIScrollView+SYRefresh.h"
 
 #endif /* SYRefresh_h */

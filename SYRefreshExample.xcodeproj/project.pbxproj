@@ -15,12 +15,12 @@
 		2A08C2BA1EC404750035DD5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A08C2B81EC404750035DD5E /* LaunchScreen.storyboard */; };
 		2A08C2C51EC404750035DD5E /* SYRefreshExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2C41EC404750035DD5E /* SYRefreshExampleTests.m */; };
 		2A08C2D01EC404750035DD5E /* SYRefreshExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2CF1EC404750035DD5E /* SYRefreshExampleUITests.m */; };
-		2A08C2E81EC404880035DD5E /* SYGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2DF1EC404880035DD5E /* SYGifHeader.m */; };
-		2A08C2E91EC404880035DD5E /* SYGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2DF1EC404880035DD5E /* SYGifHeader.m */; };
-		2A08C2EA1EC404880035DD5E /* SYGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2DF1EC404880035DD5E /* SYGifHeader.m */; };
-		2A08C2EB1EC404880035DD5E /* SYGifTextHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2E11EC404880035DD5E /* SYGifTextHeader.m */; };
-		2A08C2EC1EC404880035DD5E /* SYGifTextHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2E11EC404880035DD5E /* SYGifTextHeader.m */; };
-		2A08C2ED1EC404880035DD5E /* SYGifTextHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2E11EC404880035DD5E /* SYGifTextHeader.m */; };
+		2A08C2E81EC404880035DD5E /* SYGifHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2DF1EC404880035DD5E /* SYGifHeaderFooter.m */; };
+		2A08C2E91EC404880035DD5E /* SYGifHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2DF1EC404880035DD5E /* SYGifHeaderFooter.m */; };
+		2A08C2EA1EC404880035DD5E /* SYGifHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2DF1EC404880035DD5E /* SYGifHeaderFooter.m */; };
+		2A08C2EB1EC404880035DD5E /* SYGifTextHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2E11EC404880035DD5E /* SYGifTextHeaderFooter.m */; };
+		2A08C2EC1EC404880035DD5E /* SYGifTextHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2E11EC404880035DD5E /* SYGifTextHeaderFooter.m */; };
+		2A08C2ED1EC404880035DD5E /* SYGifTextHeaderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A08C2E11EC404880035DD5E /* SYGifTextHeaderFooter.m */; };
 		2A08C2EE1EC404880035DD5E /* SYRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2A08C2E21EC404880035DD5E /* SYRefresh.bundle */; };
 		2A08C2EF1EC404880035DD5E /* SYRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2A08C2E21EC404880035DD5E /* SYRefresh.bundle */; };
 		2A08C2F01EC404880035DD5E /* SYRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2A08C2E21EC404880035DD5E /* SYRefresh.bundle */; };
@@ -111,10 +111,10 @@
 		2A08C2CB1EC404750035DD5E /* SYRefreshExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SYRefreshExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A08C2CF1EC404750035DD5E /* SYRefreshExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYRefreshExampleUITests.m; sourceTree = "<group>"; };
 		2A08C2D11EC404750035DD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A08C2DE1EC404880035DD5E /* SYGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYGifHeader.h; sourceTree = "<group>"; };
-		2A08C2DF1EC404880035DD5E /* SYGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYGifHeader.m; sourceTree = "<group>"; };
-		2A08C2E01EC404880035DD5E /* SYGifTextHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYGifTextHeader.h; sourceTree = "<group>"; };
-		2A08C2E11EC404880035DD5E /* SYGifTextHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYGifTextHeader.m; sourceTree = "<group>"; };
+		2A08C2DE1EC404880035DD5E /* SYGifHeaderFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYGifHeaderFooter.h; sourceTree = "<group>"; };
+		2A08C2DF1EC404880035DD5E /* SYGifHeaderFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYGifHeaderFooter.m; sourceTree = "<group>"; };
+		2A08C2E01EC404880035DD5E /* SYGifTextHeaderFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYGifTextHeaderFooter.h; sourceTree = "<group>"; };
+		2A08C2E11EC404880035DD5E /* SYGifTextHeaderFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYGifTextHeaderFooter.m; sourceTree = "<group>"; };
 		2A08C2E21EC404880035DD5E /* SYRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SYRefresh.bundle; sourceTree = "<group>"; };
 		2A08C2E31EC404880035DD5E /* SYRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYRefreshView.h; sourceTree = "<group>"; };
 		2A08C2E41EC404880035DD5E /* SYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYRefreshView.m; sourceTree = "<group>"; };
@@ -266,10 +266,10 @@
 		2A08C2DD1EC404880035DD5E /* SYRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				2A08C2DE1EC404880035DD5E /* SYGifHeader.h */,
-				2A08C2DF1EC404880035DD5E /* SYGifHeader.m */,
-				2A08C2E01EC404880035DD5E /* SYGifTextHeader.h */,
-				2A08C2E11EC404880035DD5E /* SYGifTextHeader.m */,
+				2A08C2DE1EC404880035DD5E /* SYGifHeaderFooter.h */,
+				2A08C2DF1EC404880035DD5E /* SYGifHeaderFooter.m */,
+				2A08C2E01EC404880035DD5E /* SYGifTextHeaderFooter.h */,
+				2A08C2E11EC404880035DD5E /* SYGifTextHeaderFooter.m */,
 				2A08C2E21EC404880035DD5E /* SYRefresh.bundle */,
 				2A08C2E31EC404880035DD5E /* SYRefreshView.h */,
 				2A08C2E41EC404880035DD5E /* SYRefreshView.m */,
@@ -446,9 +446,9 @@
 				2A08C2F11EC404880035DD5E /* SYRefreshView.m in Sources */,
 				2A08C30B1EC404A90035DD5E /* FistViewController.m in Sources */,
 				2A08C2AC1EC404750035DD5E /* main.m in Sources */,
-				2A08C2EB1EC404880035DD5E /* SYGifTextHeader.m in Sources */,
+				2A08C2EB1EC404880035DD5E /* SYGifTextHeaderFooter.m in Sources */,
 				2A08C3171EC404A90035DD5E /* SYShopDetailManagerController.m in Sources */,
-				2A08C2E81EC404880035DD5E /* SYGifHeader.m in Sources */,
+				2A08C2E81EC404880035DD5E /* SYGifHeaderFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,8 +471,8 @@
 				2A08C31B1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C2C51EC404750035DD5E /* SYRefreshExampleTests.m in Sources */,
 				2A08C3781ECA903D0035DD5E /* TestTableViewController.m in Sources */,
-				2A08C2E91EC404880035DD5E /* SYGifHeader.m in Sources */,
-				2A08C2EC1EC404880035DD5E /* SYGifTextHeader.m in Sources */,
+				2A08C2E91EC404880035DD5E /* SYGifHeaderFooter.m in Sources */,
+				2A08C2EC1EC404880035DD5E /* SYGifTextHeaderFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,8 +495,8 @@
 				2A08C31C1EC404A90035DD5E /* TestViewController.m in Sources */,
 				2A08C2D01EC404750035DD5E /* SYRefreshExampleUITests.m in Sources */,
 				2A08C3791ECA903D0035DD5E /* TestTableViewController.m in Sources */,
-				2A08C2EA1EC404880035DD5E /* SYGifHeader.m in Sources */,
-				2A08C2ED1EC404880035DD5E /* SYGifTextHeader.m in Sources */,
+				2A08C2EA1EC404880035DD5E /* SYGifHeaderFooter.m in Sources */,
+				2A08C2ED1EC404880035DD5E /* SYGifTextHeaderFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

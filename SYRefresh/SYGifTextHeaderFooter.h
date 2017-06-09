@@ -6,8 +6,8 @@
 //  Copyright © 2017年 shusy. All rights reserved.
 //  代码地址: https://github.com/shushaoyong/SYRefresh
 
-#import "SYGifHeader.h"
+#import "SYGifHeaderFooter.h"
 
-@interface SYGifTextHeader : SYGifHeader
+@interface SYGifTextHeaderFooter : SYGifHeaderFooter
 
 @end

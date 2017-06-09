@@ -175,6 +175,8 @@
     [super willMoveToSuperview:newSuperview];
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
     self.scrollview = (UIScrollView*)newSuperview;
+    self.height = self.sy_height;
+    self.left = 0;
     if ([self refreshOriIsLeftOrRight]) {
         self.width = self.sy_height;
         self.left = 0;
