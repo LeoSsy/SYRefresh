@@ -201,17 +201,24 @@
     [self addObservers];
 }
 
-- (void)didAddSubview:(UIView *)subview
-{
-    [super didAddSubview:subview];
+- (void)didMoveToSuperview {
+    [super didMoveToSuperview];
     if (self.isFooter) return;
+    if ([self refreshOriIsLeftOrRight]) {return;}
+    //清除默认的顶部间距 自己设置
     UIViewController *currentVc = [self currentViewController];
-    if (currentVc.automaticallyAdjustsScrollViewInsets == NO) { //如果用户设置了不要自定调整内边距 我们就自己处理导航栏问题
-        if ([currentVc.parentViewController isKindOfClass:[UINavigationController class]]) {
-            UIEdgeInsets oldInsets = self.scrollview.contentInset;
-            oldInsets.top = SYNavHeight;
-            self.scrollview.contentInset = oldInsets;
-        }
+    if (@available(iOS 11.0, *)){
+        self.scrollview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        currentVc.automaticallyAdjustsScrollViewInsets = false;
+    }
+    //设置顶部的边距 如果不是 UITableView 和 UICollectionView 就不用设置
+    if ([self.scrollview isKindOfClass:[UITableView class]] || [self.scrollview isKindOfClass:[UICollectionView class]]){
+        CGFloat statusH = [UIApplication sharedApplication].statusBarFrame.size.height;
+        CGFloat navH = currentVc.navigationController.navigationBar.frame.size.height;
+        UIEdgeInsets contentInset = self.scrollview.contentInset;
+        contentInset.top = navH+statusH;
+        self.scrollview.contentInset = contentInset; //添加一个导航栏的高度
     }
 }
 
@@ -686,7 +693,6 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
     //去除隐式动画 collectionview默认会存在隐式动画
     if ([self.scrollview isKindOfClass:[UICollectionView class]]) {
         [UIView performWithoutAnimation:^{
